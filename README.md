@@ -1,2 +1,2 @@
-# Genomics_Segata
+# Microbiomal_Genomics_Segata
 Project for Segata genomics 
