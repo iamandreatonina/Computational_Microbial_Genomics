@@ -1,8 +1,10 @@
 # Microbiomal_Genomics_Segata_project 
 uSGB : SGB15132
 
-[Link for markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-[Other useful link for syntax](https://github.blog/2014-04-28-task-lists-in-all-markdown-documents/)
+LINKS:
+
+..*[Link for markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+..*[Other useful link for syntax](https://github.blog/2014-04-28-task-lists-in-all-markdown-documents/)
 
 ---
 
