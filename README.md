@@ -7,21 +7,21 @@ uSGB : SGB15132
 ---
 
 ## Things to do 
-- [] Check and write introduction 
-- [] Methods to read and add code step by step and explenation of the paramiters 
-- [] Results
-- [] Presentation   
-- [] Take deeper look at the MAGs and also if possible at the assosciated papers 
+- [ ] Check and write introduction 
+- [ ] Methods to read and add code step by step and explenation of the paramiters 
+- [ ] Results
+- [ ] Presentation   
+- [ ] Take deeper look at the MAGs and also if possible at the assosciated papers 
 
 ---
 
 ## Review 
--[] Abstract
--[] Introduction
--[] Methods
--[] Results and Discussion 
--[] Conclusions
--[] Referencces 
+- [ ] Abstract
+- [ ] Introduction
+- [ ] Methods
+- [ ] Results and Discussion 
+- [ ] Conclusions
+- [ ] Referencces 
 
 ---
 
@@ -29,11 +29,11 @@ uSGB : SGB15132
 
 ---
 ## Lectures code update
--[] Genome annotation (prokka)
--[] Pangeonme analysis (roary)
--[] Taxonomic assignments (PhyloPhlan 3.0)
--[] Phylogenetic alignments 
--[] Assosciation with host data 
+- [ ] Genome annotation (prokka)
+- [ ] Pangeonme analysis (roary)
+- [ ] Taxonomic assignments (PhyloPhlan 3.0)
+- [ ] Phylogenetic alignments 
+- [ ] Assosciation with host data 
 
 
 
