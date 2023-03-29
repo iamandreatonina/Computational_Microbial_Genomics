@@ -1,2 +1,2 @@
-# Microbiomal_Genomics_Segata
-Project for Segata genomics 
+# Microbiomal_Genomics_Segata_project 
+uSGB : SGB15132
