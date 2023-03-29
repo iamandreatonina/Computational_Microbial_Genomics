@@ -2,6 +2,7 @@
 uSGB : SGB15132
 
 LINKS:
+⋅⋅* Unordered sub-list. 
 
 ..* [Link for markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 ..* [Other useful link for syntax](https://github.blog/2014-04-28-task-lists-in-all-markdown-documents/)
