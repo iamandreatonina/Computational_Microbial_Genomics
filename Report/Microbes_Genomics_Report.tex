@@ -1,0 +1,136 @@
+\documentclass[a4paper,titlepage]{book}
+\usepackage[signatures, swapnames,nouppercase]{frontespizio}
+\usepackage[english]{babel}
+\usepackage[a4paper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath} % or simply amstext
+\usepackage{subfig}
+\usepackage{graphicx}
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries\thechapter\space  #1\par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
+\newcommand{\angstrom}{\text{\normalfont\AA}}
+\begin{document}
+\begin{frontespizio}
+\Istituzione{}
+\Logo[1.5cm]{C:/Users/acer/Desktop/Tirocinio/Teoria/imm\_tn.png}
+\Divisione{BACHELOR’S DEGREE IN}
+\Scuola{Biomolecular Sciences and Technology}
+\Titolo{Molecular Dynamics analysis to study the interaction between the human cytomegalovirus glycoprotein US9 and MICA*008}
+\NCandidato{Graduant}
+\Candidato{Gloria Lugoboni}
+\NRelatore{Supervisor}{}
+\Relatore{Prof. Emiliano Biasini}
+\NCorrelatore{Tutor}{}
+\Correlatore{Dr. Marta Rigoli}
+\Punteggiatura{}
+\Piede{Date of discussion 21/07/2022}
+\end{frontespizio}
+
+\tableofcontents
+
+\chapter{Introduction}
+\section{Motivation}
+To obtain information about a uSGB, starting from a set of ~30 HQ bins (i.e. MAGs) -> Get the most out of a set of MAGs belonging to a uSGBs:
+
+\section{uSGB numero\_usgb}
+Which uSGB are you working with, what is your focus
+
+\chapter{Methods}
+\section{Softwares and parameters used}
+- What software you used for each purpose, what parameters
+1-> introduzione sulla bash?
+\subsection{Genome annotation (Prokka)}
+
+
+
+Prokka is a fast and accurate command line software tool used to annotate prokaryoyic genomes.  It produces standards-compliant output files that can be used for further analysis or viewing in genome browsers.
+
+Prokka expect one single input file in a FASTA format, containing an assembled genome. The process of annotation is possible thanks to the comparison of the gene codes with a large database of known sequences, identifying the best match as the most significative one and therefore associating the labelling and the relevant features to the gene codes. Prokka use this method in an hieratical manner, using initially small and reliable databases moving only at the end of the process to protein family databases.
+Prokka produces several outputs file, listed in the Figure \ref{fig:prokka-output}  \cite{Prokka}.
+
+The main input to be specified are :...
+
+%such as the .fna file that represent a complete fasta file and contains the genome of the organism; the .faa file, that contains the amminoacids of the encoded proteins; the .tsv file that is a table summary of the annotations of the proteins with a description; finally, a .gbk file, a genome bank file.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.6]{C:/Users/acer/Desktop/Appunti esami/Magistrale/Primo anno/Secondo semestre/Genomics/Microbial/Lab Lectures/Report/Table\_prokka.png}
+\caption{Prokka outputs files \cite{Prokka}.}
+\label{fig:prokka-output}
+\end{figure}
+
+\subsection{Pangenome analysis (Roary)}
+
+Roary is a tool that enables the construction of large-scale prokaryote pangenomes, identifying the core and accessory genes.
+
+The input file to Roary is a GFF file containing sequences features. 
+
+Roary collects the coding regions from the annotated input genome. It operates a clustering process creating a network and defining a phylogenetic tree. A matrix is therefore obtained and the pangenome (core genes and accessory genes) is defined.  The process of clustering is based on the minimum percentage of identity, setted to 95\% by default. \cite{Roary}
+
+Roary returns three graphs, the newick tree associated to the pamgenome table, a pie chart of the breakdown of genes and the number of isolate they are present in, a graph with the frequency of genes versus the number of genomes. \cite{Roary-outputs}
+
+DA AGGIUNGERE ANALISI DEL PANGENOME SE CLOSED O OPEN
+The main input to be sopecified are :...
+
+\subsection{Taxonomic assignment (PhyloPhlAn 3.0)}
+
+PhyloPhlAn 3.0 is an accurate and rapid tool to perform microbial genome characterization and phylogenetic analysis both of newly assembled microbial genomes and metagenomes. PhyloPhlAn 3.0 can integrate public genome resources/information to the genomes in input and is also accurate at the strain and species level. \cite{Phylo}
+The main input to be sopecified are :...
+
+\subsection{Phylogenetic analysis (Roary+FastTree)}
+
+Roary enable us to generate a core gene alignment of our uSGB using as specific parametres -e, --mafft and -p, \textbf{roary -e --mafft -p 8 *.gff}. This aligment can be used to construct a phylogenetic tree, this is possible using FastTree, a tool for constructing large phylogenies, estimating their reliability.
+FastTree exploit Neighbor-Joining and nearest neighbor interchanges to create a phylogentic tree. \cite{FastTree}
+
+\subsection{Association with host data}
+
+\chapter{Results and discussion}
+- Description of the set of bins: where do your MAGs come from, to what SGB do they belong, completeness and contamination
+\section{Genome annotation}
+what functions are encoded in your MAGs?
+\\Hypothetical/annotated proteins
+\section{Pangenome analysis}
+ what’s the size of your pangenome? Is it closed or open? How many core and accessory genes?
+\section{Phylogenetic analysis and association with host data}
+comparison of phylogenetic trees based on accessory gene presence/absence or on core gene alignment. Do you detect clusters of strains? How do they associate with the metadata?
+
+\chapter{Conclusion}
+
+
+
+
+
+
+
+\begin{thebibliography}{}
+\bibitem{Prokka}
+Torsten Seemann,\emph{Prokka: rapid prokaryotic genome annotation,} Bioinformatics, Volume 30, Issue 14, July 2014, Pages 2068–2069,\\ https://doi.org/10.1093/bioinformatics/btu153
+
+\bibitem{Roary}
+Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MT, Fookes M, Falush D, Keane JA, Parkhill J. \emph{Roary: rapid large-scale prokaryote pan genome analysis.} Bioinformatics. 2015 Nov 15; 31(22):3691-3. \\doi: 10.1093/bioinformatics/btv421
+
+\bibitem{Roary-outputs}
+\emph{https://sanger-pathogens.github.io/Roary/}
+
+\bibitem{Phylo}
+Asnicar, F., Thomas, A.M., Beghini, F. et al.
+\emph{Precise phylogenetic analysis of microbial isolates and genomes from metagenomes using PhyloPhlAn 3.0.} Nat Commun 11, 2500 (2020).\\ https://doi.org/10.1038/s41467-020-16366-7
+
+\bibitem{FastTree}
+Morgan N. Price, Paramvir S. Dehal, Adam P. Arkin, \emph{FastTree: Computing Large Minimum Evolution Trees with Profiles instead of a Distance Matrix, Molecular Biology and Evolution,} Volume 26, Issue 7, July 2009, Pages 1641–1650, \\https://doi.org/10.1093/molbev/msp077
+
+
+\end{thebibliography}
+
+
+
+
+\end{document}
