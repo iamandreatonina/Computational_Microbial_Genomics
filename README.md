@@ -8,11 +8,10 @@ LINKS:
 ---
 
 ## Things to do 
-- [ ] Check and write introduction 
+- [ ] Check the introduction and write the info about our SGB -> also if possible at the assosciated papers
 - [ ] Methods to read and add code step by step and explenation of the paramiters 
 - [ ] Results
 - [ ] Presentation   
-- [ ] Take deeper look at the MAGs and also if possible at the assosciated papers 
 
 ---
 
