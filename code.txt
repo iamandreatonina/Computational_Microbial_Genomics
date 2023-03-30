@@ -46,6 +46,28 @@ grep –c –v hypothetical ${sample_name}.tsv
 
 
 
+INFO SGB:
+Samples obtained from body_site stool -> The material in a bowel movement. Stool is made up of undigested food, bacteria, mucus, and cells from the lining of the intestines. Also called feces.
+
+One sample with antibiotic_use yes -> has the cirrhosis
+
+Disease -> RA: Rheumatoid arthritis,
+        -> Hypertension,
+        -> HBV cirrhosis
+        -> one adenoma in fatty liver
+        -> one pre-Hypertension
+        -> control so healty
+
+
+NB samples that have a disease (=no control) are from CHN, except one that is AUT (Austria) -> total with disease: 12.
+
+The 3 Chenngpingw_2017 are all from the same study -> DOI: 10.1186/s13059-017-1271-6
+
+Patient from AUT -> DOI: 10.26036/CNPhis0000103
+
+
+
+
 
 
 
