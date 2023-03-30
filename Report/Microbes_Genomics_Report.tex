@@ -37,16 +37,30 @@
 \tableofcontents
 
 \chapter{Introduction}
-\section{Motivation}
-To obtain information about a uSGB, starting from a set of ~30 HQ bins (i.e. MAGs) -> Get the most out of a set of MAGs belonging to a uSGBs:
 
-\section{uSGB numero\_usgb}
+
+\section{Metagenome Sequencing, Assembly, and Binning}
+Metagenome sequencing enables the construction of metagenomes-assembled genomes (MAGs). A MAG can be seen as a microbial genome obtained by a preliminary passage of genome assembly of high quality contigs. This kind of analysis enables us to identify novel species thanks to a passage of annotation and taxonomic classification \cite{MAG}.
+
+A typical metagenome project involves a specific pipeline, a step of sample processing and sequencing, a step of assembly and finally a step of binning followed by genome-annotation. This whole process is than completed with a statistical analysis \cite{Metagenome}.
+
+Metagenomics is possible thanks to the study of DNA genomes, the sequencing is possible using a variety of novel sequencing technologies and platforms like Roche 454 sequencing, Illumina sequencing, and ion torrent Personal Genome Machine (PGM) \cite{Sequencing}.
+
+Thanks to the proccess of assembly it is possible to reconstruct genomes. This method is based on a process of aligment and merging of overlapping sequences, creating large contiguous regions (contigs) \cite{Assembly}.
+
+After the process of assembly is completed, contigs are grouped by their organism of origin into bins, using a process known as binning \cite{Binning}. The selection of high quality bins enables the identification of MAGs, these are characterized by a high completness and low levels of contamination and are used to operate taxonomic annotation and gene prediction \cite{MAG2}. These can be grouped together in the same species genome bin (SGB) if they exceed a certain threshold of nucleotide identity, with a treshold of the 5\% for genomic identity. It is possible to assign a taxonomic label based on the presence (or not) of characterized genomess \cite{SGB2}. If a genome with associated taxonomy is not availabe, we talk about known SGB (kSGB), while in the opposite case, we talk about unknown clades (uSGB) \cite{SGB}.
+
+\section{uSGB 15132}
 Which uSGB are you working with, what is your focus
+
+We were provided with a set of 30 high-quality prebinned metagenome grouped in the same uSGB labelled SGB15132.
+
+The bins have a completeness higher that 97.3 and the maximum redundacy registered is equal to 2.25.
+
 
 \chapter{Methods}
 \section{Softwares and parameters used}
 - What software you used for each purpose, what parameters
-1-> introduzione sulla bash?
 \subsection{Genome annotation (Prokka)}
 
 
@@ -111,6 +125,35 @@ comparison of phylogenetic trees based on accessory gene presence/absence or on 
 
 
 \begin{thebibliography}{}
+\bibitem{MAG}
+Yang, Chao et al. \emph{A review of computational tools for generating metagenome-assembled genomes from metagenomic sequencing data,} Computational and structural biotechnology journal vol. 19 6301-6314. 23 Nov. 2021, \\doi:10.1016/j.csbj.2021.11.028
+
+\bibitem{Metagenome}
+Thomas T, Gilbert J, Meyer F.
+\emph{Metagenomics - a guide from sampling to data analysis.} Microb Inform Exp. 2012 Feb 9;2(1):3. \\doi: 10.1186/2042-5783-2-3. PMID: 22587947; PMCID: PMC3351745.
+
+
+\bibitem{Sequencing}
+Reuter JA, Spacek DV, Snyder MP. \emph{High-throughput sequencing technologies.} Mol Cell. 2015 May 21;58(4):586-97.\\ doi: 10.1016/j.molcel.2015.05.004. PMID: 26000844; PMCID: PMC4494749
+
+
+\bibitem{Assembly}
+Churko JM, Mantalas GL, Snyder MP, Wu JC. \emph{Overview of high throughput sequencing technologies to elucidate molecular pathways in cardiovascular diseases.} Circ Res. 2013 Jun 7;112(12):1613-23. \\ doi: 10.1161/CIRCRESAHA.113.300939.
+
+\bibitem{Binning}
+Nissen, J.N., Johansen, J., Allesøe, R.L. et al. \emph{Improved metagenome binning and assembly using deep variational autoencoders.} Nat Biotechnol 39, 555–560 (2021).\\https://doi.org/10.1038/s41587-020-00777-4
+
+
+\bibitem{MAG2}
+Chao Yang, Debajyoti Chowdhury, Zhenmiao Zhang, William K. Cheung, Aiping Lu, Zhaoxiang Bian, Lu Zhang,
+\emph{A review of computational tools for generating metagenome-assembled genomes from metagenomic sequencing data,} Computational and Structural Biotechnology Journal, Volume 19, 2021, Pages 6301-6314, ISSN 2001-0370, \\https://doi.org/10.1016/j.csbj.2021.11.028.
+
+\bibitem{SGB2}
+Pasolli E, Asnicar F, Manara S, Zolfo M, Karcher N, Armanini F, Beghini F, Manghi P, Tett A, Ghensi P, Collado MC, Rice BL, DuLong C, Morgan XC, Golden CD, Quince C, Huttenhower C, Segata N. \emph{Extensive Unexplored Human Microbiome Diversity Revealed by Over 150,000 Genomes from Metagenomes Spanning Age, Geography, and Lifestyle.} Cell. 2019 Jan 24;176(3):649-662.e20. \\doi: 10.1016/j.cell.2019.01.001.
+
+\bibitem{SGB}
+Blanco-Míguez, A., Beghini, F., Cumbo, F. et al. \emph{Extending and improving metagenomic taxonomic profiling with uncharacterized species using MetaPhlAn 4.} Nat Biotechnol (2023). \\https://doi.org/10.1038/s41587-023-01688-w
+
 \bibitem{Prokka}
 Torsten Seemann,\emph{Prokka: rapid prokaryotic genome annotation,} Bioinformatics, Volume 30, Issue 14, July 2014, Pages 2068–2069,\\ https://doi.org/10.1093/bioinformatics/btu153
 
