@@ -1,0 +1,21 @@
+Project Lecture - Prokka code:
+
+conda activate prokka
+
+prokka --help
+
+bunzip2 *bz2
+
+for mag in $(ls *.fn*a);
+do
+prokka --kingdom Bacteria --outdir SGB15132_prokka_output/${mag//.fn*a} --prefix ${mag} ${mag};
+done
+
+for mag in $(ls *.fa);
+do
+prokka --kingdom Bacteria --outdir SGB15132_prokka_output/${mag//.fa} --prefix ${mag} ${mag};
+done
+
+# Annotations:
+  --kingdom [X]     Annotation mode: Archaea|Bacteria|Mitochondria|Viruses (default 'Bacteria')
+
