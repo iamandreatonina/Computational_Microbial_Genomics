@@ -19,3 +19,33 @@ done
 # Annotations:
   --kingdom [X]     Annotation mode: Archaea|Bacteria|Mitochondria|Viruses (default 'Bacteria')
 
+All the MAGs have been annotated, for each we created several outputs files:
+(1) .fna file -> complete nucleotide FASTA file
+(2) .faa file -> protein FASTA file -> contains the amminoacids of the encoded proteins -> We have multiples protein ID because from the genome we can translate more than one protein -> ID of the proteins
+(3) .tsv file -> table summary -> tab-separated file of all the features of protein_loci -> with a description
+(4) .txt file -> summary containing statistics relating to the annotated features found such as the number of contigs, the number of CDS, the number of rRNA and tRNA and the number of bases.
+(5) .gbk file -> standard genome bank file -> we have more info like db_xref (=linking DNA sequence records to other external databases), etc
+(6) .gff -> contains both the sequences and the annotations. It can be viewed directly in Artemis or IGV.
+
+How many CDS were found in one of your MAGs?
+cat ${sample_name}.txt
+To look at all the values in all the files -> grep -w 'CDS' */*.txt -> minimum value of CDS is 2651
+CDS: protein coding sequence (CDS) region of each gene. CDS is a sequence of nucleotides that corresponds with the sequence of amino acids in a protein
+
+How many hypothetical proteins?
+grep –c hypothetical */*.tsv -> to look at the value for all the different MAGs we have -> minimal value: 1190
+
+
+How many known proteins?
+grep –c –v hypothetical ${sample_name}.tsv
+# Annotation: -v, --invert-match -> select non-matching lines -> so here we select the known proteins -> these proteins, since are known are memorized in the data with thei name
+
+-> to look at the total numbers of proteins from a .tsv file, both known and unknown we need the following command: grep -c 'CDS' */*.tsv
+
+ 
+
+
+
+
+
+

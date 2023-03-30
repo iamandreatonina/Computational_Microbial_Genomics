@@ -34,7 +34,7 @@ LINKS:
 
 ---
 ## Lectures code update
-- [ ] Genome annotation (prokka)
+- [X] Genome annotation (prokka)
 - [ ] Pangeonme analysis (roary)
 - [ ] Taxonomic assignments (PhyloPhlan 3.0)
 - [ ] Phylogenetic alignments 
