@@ -1,5 +1,5 @@
-Project Lecture - Prokka code: Genome Annotation:
-For each FASTA file, that contains the contigs, we do prokka -> 
+Project Lecture - Prokka code: Genome Annotation -> we will not find anything at the species level because we already know that we are working with an unknown SGB -> a process of taxonomy association was already done
+For each FASTA file, that contains the contigs, we do prokka
 
 conda activate prokka
 
@@ -177,26 +177,80 @@ Commands:
 -cd = percentage of isolates a gene must be in to be core [default: 99] -> because we are creating the core genes -> everithying that is present in 90% of the MAGs are considered as core genomes -> we can change to 80/85 % and see what happens to the core genomes.
 7) cd roary_out
 Several outputs get created:
--geen_presence_absence.csv -> 
-more summary:statistics.txt -> core genes, soft genes, cloud genes -> we et the number of genes fresent in the genomes and the percentage -> example: 190
+----->gene_presence_absence.csv: The gene presence and absence spreadsheet lists each gene and which samples it is present in.
+
+1-> The gene name, which is the most frequently occurring gene name from the sequences in the cluster. If there is no gene name, then it is given a generic unique name group_XXX.
+2-> A non unique gene name, where sequences with the same gene name have ended up in different groups. It might be because of split genes, or miss annotation.
+3-> Functional annotation. The most frequently occurring functional annotation from the cluster is used.
+4-> Number of isolates represented in the cluster.
+5-> Number of sequences in the cluster.
+6-> Average number of sequences per isolate. This is normally 1. If this is greater than 1 then there is over clustering and the paralogs couldn’t be split.
+7-> Genome fragment, where there is evidence at the contig level that the genes are linked.
+8-> Order within fragment, combined with the genome fragment this gives an indication of the order of genes within the graph. In Excel, sort on Column G and H.
+9-> Accessory Fragment is where core genes are excluded and there is evidence at contig level that the genes are linked.
+10-> Accessory order with fragment, combined with the Accessory fragment this gives an indication of the order of genes within the accessory graph. In Excel, sort on columns I and J.
+11-> Comments on the quality of the cluster. Miss predictions are noted, as are single genes on single contigs, which can be evidence of low level contamination.
+12-> Minimum sequence length in nucleotides of the cluster.
+13-> Maximum sequence length in nucleotides of the cluster.
+14-> Average sequence length in nucleotides of the cluster.
+15-> Presence and absence of genes in each sample, with the corresponding source Gene ID.
+
+-----> summary:statistics.txt -> core genes, soft genes, cloud genes
 8) cat summary_statistics.txt
+
+Core genes (90% <= strains <= 100%) 2178
+Soft core genes (89% <= strains < 90%) 0
+Shell genes (15% <= strains < 89%) 1908
+Cloud genes (0% <= strains < 15%) 2178
+Total genes (0% <= strains <= 100%) 6264
+
+-> we get the number of genes fresent in the genomes and the percentage -> example: 2178 genes where present in >=90% of the strains
+
+Number of genes in the core and accessory. A text file with an overview of the genes and how frequently they occur in the input isolates. If the number of core genes is 0 it can indicate you have some contamination. Likewise if the total number of genes is very high.
+
 9) gene_presence_absence.csv
 
+query_pan_genome -> -a STR  action (union/intersection/complement/gene_multifasta/difference) [union] -> NB da lo stesso output name a tutti!!
 
 10) How big is the pangenome? query_pan_genome -a union (=to look at the pangenome) GFF/*.gff
 
+This will give us a file called pan_genome_results that contains a list of all genes in all samples, i .e. the pan genome.
+Have a look at the first ten lines of the newly generated file: head pan_genome_results -> the list contains the names of the clusters (this is usually the most frequently occurring gene name from the sequences in the cluster or, if there is no gene name, a generic unique name group_XXX).
+For each cluster, there is a tab separated list of each sample specific gene belonging in that cluster.
 
-11) How big is the pangenome? query_pan_genome -a interection (=to look at the core) GFF/*.gff
+11) How big is the pangenome? query_pan_genome -a intersection (=to look at the core) GFF/*.gff
  
 
-12) How big is the pangenome? query_pan_genome -a ?? (=to look at the accessory) GFF/*.gff
+12) How big is the pangenome? query_pan_genome -a complement (=to look at the accessory) GFF/*.gff
+
+Total line with: wc -l pane_genome_result_*
+We get:
+5070 pan_genome_results_complement
+1194 pan_genome_results_intersection
+6264 pan_genome_results_union
+
+
+USEFUL NOTEBOOK: https://notebook.community/ssjunnebo/pathogen-informatics-training/Notebooks/ROARY/results
 
 
 
-Plot the outputs of roary using th efollowing page: https://github.com/sanger-pathogens/Roary/blob/master/bin/create_pan_genome_plots.R
-NB. remember that for teh plotting you probably need to move out of the roary enviroment -> conda deactivate roary
+Plot the outputs of roary using the .R at following page: https://github.com/sanger-pathogens/Roary/blob/master/bin/create_pan_genome_plots.R
+1) open RStudio
+2) Run the code create_pan_genome.R, remember to be in the right directory with the input files needed!
+Outputs files:
+-blast_identity_frequency.png
+-number_new_genes.png
+-number_of_conserved_genes.png
+-number_of_genes_in_pan.png
+-number_of_unique_genes.png
+-conserved_vs_totalgene.png -> pangenome closed/open -> We see what happens when the more genomes are inserted -> we need to see if a plateaux is reached or not -> comment on this and make deduction if the pangenome is open or not -> we see what happens to the conserved genomes and what happens to the total genome
+-unique_vs_new_genes.png -> da commentare
+
+
 
 Extra plotting:
+NB. remember that for the plotting you probably need to move out of the roary enviroment -> conda deactivate roary
+
 1) Download the .py: curl https://raw.githubusercontent.com/sangerpathogens/Roary/master/contrib/roary_plots/roary_plots.py -o roary_plots.py
 
 The plotting script requires two files that were generated by Roary:
@@ -204,10 +258,25 @@ The plotting script requires two files that were generated by Roary:
 -gene_presence_absence.csv.
 
 2) python roary_plots.py -h
+-> we have info on the help, we understand which are the input and output files
 3) python roary_plots.py accessory_binary_genes.fa.newick gene_presence_absence.csv
 
+Different plots are returned:
+- pie chart -> how many genes in the core and accessory, clouds and shell
+- matrix graphic with the tree of presence_absence + heatmap with the genes present and not -> we can see that the core genes are present everywhere while there are some genes present in only one -> we can see a tree but important, it is not a complete clustering
+- pangenome_frequency -> the genes present in one genome are a lot, these are the accessory genes, the core genes are found at the end of the plot of the frequency -> genes present in all the genomes -> comment on the fact that the number of the accessoty is way bigger that the number of the core gene.
+-> see how these plots change when we change the -i and -cd parameters
 
-We see what happens when the more genomes are inserted -> we need to see if a plateaux is reached or not -> comment on this and make deduction if the pangenome is open or not -> we see what happens to the conserved genomes and what happens to the total genome
+
+Roary with alignment
+1) roary GFF/*.gff -f roary_out_alignment –e -n -i 95 -cd 90
+OR 
+roary GFF/*.gff -f roary_out_alignment –e -n -i 95 -cd 90 -p INT_Value -> We can speed it up increasing the number of threads, the default is one -> increase with the parameter -p INT_Value
+-> we setted 8 thread
+
+This command produce a core gene alignment, to get a better tree -> thanks to the -e parameter.
+Can also use the -n parameter, we get a faster alignment. If we don't use -n it uses PRANK instead of mafft and it takes a little more time -> take some hours!!
+PRANK: https://pubmed.ncbi.nlm.nih.gov/24170401/ (alternatively: mafft)
 
 INFO SGB:
 Samples obtained from body_site stool -> The material in a bowel movement. Stool is made up of undigested food, bacteria, mucus, and cells from the lining of the intestines. Also called feces.
