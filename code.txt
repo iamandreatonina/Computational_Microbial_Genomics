@@ -169,7 +169,7 @@ If the species live in an open enviroemt in which it can share info with other s
 Commands:
 1) Get prokka GFF output and put into a same directory
 2) conda activate roary
-3) roary -h -> to look at the help. Today we will use it in two ways: with the 
+3) roary -h -> to look at the help. Today we will use it in two ways.
 4) mkdirGFF && cd GFF
 5) cp ../*/*gff ~/GFF
 6) roary *.gff -f roary_out -i 95 -cd 90
@@ -244,8 +244,16 @@ Outputs files:
 -number_of_genes_in_pan.png
 -number_of_unique_genes.png
 -conserved_vs_totalgene.png -> pangenome closed/open -> We see what happens when the more genomes are inserted -> we need to see if a plateaux is reached or not -> comment on this and make deduction if the pangenome is open or not -> we see what happens to the conserved genomes and what happens to the total genome
--unique_vs_new_genes.png -> da commentare
+-unique_vs_new_genes.png -> da commentare -> in the Rtab files, does unique gene mean genes that are only present in one strain? and new gene mean genes that are not found in previous strains?
 
+
+NB: Article for analysis od unique_vs_new_genes and conserved_vs_totalgene: https://journals.asm.org/doi/10.1128/spectrum.02654-21
+Roary pangenome plots were examined to assess the relationships between numbers of genes identified and numbers of genomes used.
+These plots showed that saturation in the number of new (Fig. 2A) and conserved genes (Fig. 2B) identified was reached after including fewer than 20 genomes,
+consistent with a restricted gonococcal pangenome size. As a feature, Roary splits variants of the same gene into multiple unique genes where these have less than 95% similarity.
+Therefore, the number of unique (Fig. 2A) and total genes (Fig. 2B) identified correlated with the number of gene variants defined, which in turn increased as more genomes were examined.
+This indicates that, in the gonococcus, diversity within genes increases proportionally as more genomes are examined, whereas diversity in genome content saturizes with less than 20 genomes.
+This also showed that the subset of 765 isolates was sufficient to capture the full extent of the gonococcal pangenome.
 
 
 Extra plotting:
@@ -267,11 +275,12 @@ Different plots are returned:
 - pangenome_frequency -> the genes present in one genome are a lot, these are the accessory genes, the core genes are found at the end of the plot of the frequency -> genes present in all the genomes -> comment on the fact that the number of the accessoty is way bigger that the number of the core gene.
 -> see how these plots change when we change the -i and -cd parameters
 
+DA CHIEDERE COME MAI CI VENGONO RISULTATI DIVERSI SUL summary_statistics !!!!!!!!!!!!!!!!!!!!
 
 Roary with alignment
-1) roary GFF/*.gff -f roary_out_alignment –e -n -i 95 -cd 90
+1) roary *.gff -f roary_out_alignment –e -n -i 95 -cd 90
 OR 
-roary GFF/*.gff -f roary_out_alignment –e -n -i 95 -cd 90 -p INT_Value -> We can speed it up increasing the number of threads, the default is one -> increase with the parameter -p INT_Value
+roary *.gff -f roary_out_alignment –e -n -i 95 -cd 90 -p INT_Value -> We can speed it up increasing the number of threads, the default is one -> increase with the parameter -p INT_Value
 -> we setted 8 thread
 
 This command produce a core gene alignment, to get a better tree -> thanks to the -e parameter.

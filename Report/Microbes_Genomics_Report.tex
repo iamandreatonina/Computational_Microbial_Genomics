@@ -6,6 +6,9 @@
 \usepackage{amsmath} % or simply amstext
 \usepackage{subfig}
 \usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
 \makeatletter
 \def\@makechapterhead#1{%
   \vspace*{50\p@}%
@@ -56,30 +59,35 @@ Which uSGB are you working with, what is your focus
 
 We were provided with a set of 30 high-quality prebinned metagenome grouped in the same uSGB labelled SGB15132.
 
-The bins have a completeness higher that 97.3 and the maximum redundacy registered is equal to 2.25.
+The bins have a completeness higher that 97.3, as shown in the Figure \ref{fig:compl} and the maximum redundacy registered is equal to 2.25.
 
-DA aggiungere grafico della completeness
+The number of the CDS (protein coding sequence) is leggermente variable, spanning from a minimun value of 2651 to a max of 3935. For each MAG, more or less a half of the CDS are known proteins, while the other half is represented by RNA or hypotetical proteins.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[]{completeness\_distribution.png}
+\caption{Completeness distribution of the given MAGs.}
+\label{fig:compl}
+\end{figure}
 
 \chapter{Methods}
 \section{Softwares and parameters used}
 - What software you used for each purpose, what parameters
 \subsection{Genome annotation (Prokka)}
 
-
-
 Prokka is a fast and accurate command line software tool used to annotate prokaryoyic genomes.  It produces standards-compliant output files that can be used for further analysis or viewing in genome browsers.
 
 Prokka expect one single input file in a FASTA format, containing an assembled genome. The process of annotation is possible thanks to the comparison of the gene codes with a large database of known sequences, identifying the best match as the most significative one and therefore associating the labelling and the relevant features to the gene codes. Prokka use this method in an hieratical manner, using initially small and reliable databases moving only at the end of the process to protein family databases.
 Prokka produces several outputs file, listed in the Figure \ref{fig:prokka-output}  \cite{Prokka}.
 
-We need to specify several parameters, specifically, the input files (\textit{}), the output directory (\textit{-outdir}) and the 
+We need to specify several parameters, specifically, the input files, our MAGs, the output directory \code{--outdir} and the parameter \code{--kingdom Bacteria} that is needed to specify the annotation mode, to make the prokka more fast.
+\\ \code{prokka --kingdom Bacteria --outdir SGB15132\_prokka\_output .f*na}.
 
 %such as the .fna file that represent a complete fasta file and contains the genome of the organism; the .faa file, that contains the amminoacids of the encoded proteins; the .tsv file that is a table summary of the annotations of the proteins with a description; finally, a .gbk file, a genome bank file.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[scale=0.6]{C:/Users/acer/Desktop/Appunti esami/Magistrale/Primo anno/Secondo semestre/Genomics/Microbial/Lab Lectures/Report/Table\_prokka.png}
+\includegraphics[scale=0.6]{Table\_prokka.png}
 \caption{Prokka outputs files \cite{Prokka}.}
 \label{fig:prokka-output}
 \end{figure}
@@ -94,8 +102,9 @@ Roary collects the coding regions from the annotated input genome. It operates a
 
 Roary returns three graphs, the newick tree associated to the pamgenome table, a pie chart of the breakdown of genes and the number of isolate they are present in, a graph with the frequency of genes versus the number of genomes. \cite{Roary-outputs}
 
-DA AGGIUNGERE ANALISI DEL PANGENOME SE CLOSED O OPEN
-The main input to be sopecified are :...
+
+There are some main parameters that need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the -i parameter, specifing the percentage identity of blastp, here used at 95\%, \code{-i 95}; the -cd parameter, percentage of isolates a gene must be in to be considered part of the core genome, here setted at 90\%, \code{-cd 90}; the \code{-e} parameter, to perform a core gene alignment; the \code{-n} parameter, to use mafft as the tool for the multiple sequence alignmet, making the process faster and finally the parameter \code{-p}, needed to specify the number of threads, increasing therefore the speed.
+\\ \code{roary .gff -i 95 -cd 90 -e -n -p 8}.
 
 \subsection{Taxonomic assignment (PhyloPhlAn 3.0)}
 
