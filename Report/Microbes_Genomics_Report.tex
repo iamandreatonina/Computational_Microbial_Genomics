@@ -55,11 +55,11 @@ Thanks to the proccess of assembly it is possible to reconstruct genomes. This m
 After the process of assembly is completed, contigs are grouped by their organism of origin into bins, using a process known as binning \cite{Binning}. The selection of high quality bins enables the identification of MAGs, these are characterized by a high completness and low levels of contamination and are used to operate taxonomic annotation and gene prediction \cite{MAG2}. These can be grouped together in the same species genome bin (SGB) if they exceed a certain threshold of nucleotide identity, with a treshold of the 5\% for genomic identity. It is possible to assign a taxonomic label based on the presence (or not) of characterized genomess \cite{SGB2}. If a genome with associated taxonomy is not availabe, we talk about known SGB (kSGB), while in the opposite case, we talk about unknown clades (uSGB) \cite{SGB}.
 
 
+
+With the term pangenome, we indicate the union of the \textit{core genome}, containing genes present in all strains, and the \textit{dispensable genome}, also called \textit{accessory genome}, containing genes present in two or more strains and genes unique to single strains \cite{Medini}.
+
+
 DA SPIEGARE IL PANGENOME ANAYSIS E LE ALTRE ANALISI CHE FACCIAMO??
-
-PANGENOME:
-A bacterial species can be described by its pan-genome, which is composed of a ‘core genome’ containing genes present in all strains, and a ’dispensable genome’ containing genes present in two or more strains and genes unique to single strains. Given that the number of unique genes is vast, the pan-genome of a bacterial species might be orders of magnitude larger than any single genome \cite{Medini}.
-
 
 \section{uSGB 15132}
 We were provided with a set of 30 high-quality prebinned metagenomes grouped in the same uSGB labelled SGB15132.
@@ -129,19 +129,40 @@ After the gene annotation process, possible using prokka, we were able to identi
 
 
 
-Each SGB strain was found to contain an average of 1317 genes that are present in every strain (core genome), plus 8407 genes that are absent in more than one strains (strain <30) (accessory genome).
-The accessory genes are also divided into genes present in only one strain (cloud genome) or genes present in two or more strains but not all strains (shell genome) \cite{Medini}. The figure \ref{fig:pangenome1} show the divisio of the pangenome?.
-
+Each SGB strain was found to contain an average of 1317 genes that are present in every strain (core genome), plus 8407 genes that are absent in more than one strains (strain $<$ 30) (accessory genome). This can be seen in the Figure \ref{fig:pangenome2}, showing the frequency plot of the genes per genome.
+The accessory genes are also divided into genes present in only one strain (cloud genome) or genes present in two or more strains but not all strains (shell genome) \cite{Medini}. The figure \ref{fig:pangenome1} show the subparts constituting the pangenome, associated with the total number of genes.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[scale=0.6]{Graphs/pangenome\_pie.png}
-\caption{Pie chart showing the disvision of the pangenome}
+\includegraphics[scale=0.6]{Graphs/pangenome\_frequency.png}
+\caption{Pangenome Frequency}
+\label{fig:pangenome2}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.5]{Graphs/pangenome\_pie.png}
+\caption{Core and accessory genome}
 \label{fig:pangenome1}
 \end{figure}
 
- what’s the size of your pangenome? Is it closed or open? How many core and accessory genes?
 
+What’s the size of your pangenome? Is it closed or open? How many core and accessory genes?
+
+DA COMMENTARELE IMMAGINI OTTENUTE CON R STUDIO -> PER DIRE SE IL PANGENOME è APERTO O CHIUSO
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.2]{Graphs/conserved\_vs\_total\_genes.png}
+\caption{Conserved vs Total genes}
+\label{fig:pangenome3}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.2]{Graphs/unique\_vs\_new\_genes.png}
+\caption{Unique vs New genes}
+\label{fig:pangenome4}
+\end{figure}
 
 \section{Phylogenetic analysis and association with host data}
 comparison of phylogenetic trees based on accessory gene presence/absence or on core gene alignment. Do you detect clusters of strains? How do they associate with the metadata?
