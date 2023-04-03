@@ -1,5 +1,5 @@
-Project Lecture - Prokka code: Genome Annotation -> we will not find anything at the species level because we already know that we are working with an unknown SGB -> a process of taxonomy association was already done
-For each FASTA file, that contains the contigs, we do prokka
+#Project Lecture - Prokka code: Genome Annotation -> we will not find anything at the species level because we already know that we are working with an unknown SGB -> a process of taxonomy association was already done
+#For each FASTA file, that contains the contigs, we do prokka
 
 conda activate prokka
 
@@ -18,22 +18,22 @@ prokka --kingdom Bacteria --outdir SGB15132_prokka_output/${mag//.fa} --prefix $
 done
 
 # Annotations:
-  --kingdom [X]     Annotation mode: Archaea|Bacteria|Mitochondria|Viruses (default 'Bacteria') -> to have a faster annotation
+#  --kingdom [X]     Annotation mode: Archaea|Bacteria|Mitochondria|Viruses (default 'Bacteria') -> to have a faster annotation
 
-All the MAGs have been annotated, for each we created several outputs files:
-(1) .fna file -> complete nucleotide FASTA file
-(2) .faa file -> protein FASTA file -> contains the amminoacids of the encoded proteins -> We have multiples protein ID because from the genome we can translate more than one protein -> ID of the proteins
-(3) .tsv file -> table summary -> tab-separated file of all the features of protein_loci -> with a description -> functional annotation
-(4) .txt file -> summary containing statistics relating to the annotated features found such as the number of contigs, the number of CDS, the number of rRNA and tRNA and the number of bases.
-(5) .gbk file -> standard genome bank file -> we have more info like db_xref (=linking DNA sequence records to other external databases), etc
-(6) .gff -> contains both the sequences and their annotations. It can be viewed directly in Artemis or IGV -> most important file -> this is the file we are going to use with roary.
+#All the MAGs have been annotated, for each we created several outputs files:
+#(1) .fna file -> complete nucleotide FASTA file
+#(2) .faa file -> protein FASTA file -> contains the amminoacids of the encoded proteins -> We have multiples protein ID because from the genome we can translate more than one protein -> ID of the proteins
+#(3) .tsv file -> table summary -> tab-separated file of all the features of protein_loci -> with a description -> functional annotation
+#(4) .txt file -> summary containing statistics relating to the annotated features found such as the number of contigs, the number of CDS, the number of rRNA and tRNA and the number of bases.
+#(5) .gbk file -> standard genome bank file -> we have more info like db_xref (=linking DNA sequence records to other external databases), etc
+#(6) .gff -> contains both the sequences and their annotations. It can be viewed directly in Artemis or IGV -> most important file -> this is the file we are going to use with roary.
 
-How many CDS (coding sequences) were found in one of your MAGs?
+#How many CDS (coding sequences) were found in one of your MAGs?
 cat ${sample_name}.txt
-To look at all the values in all the files -> grep -w 'CDS' */*.txt -> minimum value of CDS is 2651
-CDS: protein coding sequence (CDS) region of each gene. CDS is a sequence of nucleotides that corresponds with the sequence of amino acids in a protein
+#To look at all the values in all the files -> grep -w 'CDS' */*.txt -> minimum value of CDS is 2651
+#CDS: protein coding sequence (CDS) region of each gene. CDS is a sequence of nucleotides that corresponds with the sequence of amino acids in a protein
 
-RESULTS:
+#RESULTS:
 ChengpingW_2017__AS103raw__bin.22/ChengpingW_2017__AS103raw__bin.22.fa.txt:CDS: 2651
 ChengpingW_2017__AS126raw__bin.3/ChengpingW_2017__AS126raw__bin.3.fa.txt:CDS: 3111
 ChengpingW_2017__AS71raw__bin.22/ChengpingW_2017__AS71raw__bin.22.fa.txt:CDS: 3136
@@ -68,10 +68,10 @@ YuJ_2015__SZAXPI015232-18__bin.15/YuJ_2015__SZAXPI015232-18__bin.15.fa.txt:CDS: 
 
 
 
-How many hypothetical proteins?
+#How many hypothetical proteins?
 grep –c hypothetical */*.tsv -> to look at the value for all the different MAGs we have -> minimal value: 1190
 
-RESULTS:
+#RESULTS:
 ChengpingW_2017__AS103raw__bin.22/ChengpingW_2017__AS103raw__bin.22.fa.tsv:1190
 ChengpingW_2017__AS126raw__bin.3/ChengpingW_2017__AS126raw__bin.3.fa.tsv:1421
 ChengpingW_2017__AS71raw__bin.22/ChengpingW_2017__AS71raw__bin.22.fa.tsv:1475
@@ -106,13 +106,13 @@ YuJ_2015__SZAXPI015232-18__bin.15/YuJ_2015__SZAXPI015232-18__bin.15.fa.tsv:1614
 
 
 
-How many known proteins?
+#How many known proteins?
 grep –c –v hypothetical ${sample_name}.tsv
 # Annotation: -v, --invert-match -> select non-matching lines -> so here we select the known proteins -> these proteins, since are known are memorized in the data with thei name
 
--> to look at the total numbers of proteins from a .tsv file, both known and unknown we need the following command: grep -c 'CDS' */*.tsv
+#-> to look at the total numbers of proteins from a .tsv file, both known and unknown we need the following command: grep -c 'CDS' */*.tsv
 
-RESULTS:
+#RESULTS:
 ChengpingW_2017__AS103raw__bin.22/ChengpingW_2017__AS103raw__bin.22.fa.tsv:1502
 ChengpingW_2017__AS126raw__bin.3/ChengpingW_2017__AS126raw__bin.3.fa.tsv:1736
 ChengpingW_2017__AS71raw__bin.22/ChengpingW_2017__AS71raw__bin.22.fa.tsv:1700
@@ -146,27 +146,27 @@ YuJ_2015__SZAXPI003419-6__bin.12/YuJ_2015__SZAXPI003419-6__bin.12.fa.tsv:1520
 YuJ_2015__SZAXPI015232-18__bin.15/YuJ_2015__SZAXPI015232-18__bin.15.fa.tsv:1683
 
 
-Figure: distribution of the completness? Search in the net
+#Figure: distribution of the completness? Search in the net
 
-EC_number -> in the .tsv file it correspondsto the Enzyme Commission number (EC number) -> a numerical classification scheme for enzymes, based on the chemical reactions they catalyze.
+#EC_number -> in the .tsv file it correspondsto the Enzyme Commission number (EC number) -> a numerical classification scheme for enzymes, based on the chemical reactions they catalyze.
 
 
-Lecture pangenome analysis:
-Pangenome -> union of core genes and accessory gene -> in our case it is the union of all the genome we have
+#Lecture pangenome analysis:
+#Pangenome -> union of core genes and accessory gene -> in our case it is the union of all the genome we have
 
-Shell genome -> genes present in >= 2 strains
-Cloud genome: genes present in just 1 strains
+#Shell genome -> genes present in >= 2 strains
+#Cloud genome: genes present in just 1 strains
 
-Close pangenome
-Open pangenome -> if we keep adding genomes, we see more acessory function
+#Close pangenome
+#Open pangenome -> if we keep adding genomes, we see more acessory function
 
-Roary analyse the pangenome and uses the output of prokka for that.
+#Roary analyse the pangenome and uses the output of prokka for that.
 
-Plot te output of roary:
-The more genomes we add, the pangenome size increase -> we explore more diversity -> we have a bogger diversity -> ergo: open pangenome
-If the species live in an open enviroemt in which it can share info with other species -> usually open pangenome.
+#Plot te output of roary:
+#The more genomes we add, the pangenome size increase -> we explore more diversity -> we have a bogger diversity -> ergo: open pangenome
+#If the species live in an open enviroemt in which it can share info with other species -> usually open pangenome.
 
-Commands:
+#Commands:
 1) Get prokka GFF output and put into a same directory
 2) conda activate roary
 3) roary -h -> to look at the help. Today we will use it in two ways.
