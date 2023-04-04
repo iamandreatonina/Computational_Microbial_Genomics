@@ -36,7 +36,7 @@ LINKS:
 ## Lectures code update
 - [X] Genome annotation (prokka)
 - [X] Pangeonme analysis (roary)
-- [ ] Taxonomic assignments (PhyloPhlan 3.0)
+- [X] Taxonomic assignments (PhyloPhlan 3.0)
 - [ ] Phylogenetic alignments 
 - [ ] Assosciation with host data 
 
