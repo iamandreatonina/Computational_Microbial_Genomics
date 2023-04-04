@@ -335,9 +335,9 @@ LAB - TAXONOMIX CHARACTERIZATION + ANNOTATION
 -> we use phyloPLHAn -> taxonomic assignemnt, for each genome, if there is less than 5% distance then it associate that bin to that taxonomic annotation
 
 mkdir phylophlan_input -> contains the fatsa files of teh MAGS
-conda activate phyloplan
+conda activate ppa (=our enviroment for phylophlan)
 
-phyloplan_metagenomic -i phyluplan_input -o phylo_out --nproc 4 -n 1 (=return the best match, with a large database we use -n 5) --database_update -d CMG2324 (database) --verbose
+phylophlan_metagenomic -i Phylophlan/ -o phylophlan_output --nproc 4 -n 1 (=return the best match, with a large database we use -n 5) --database_update -d CMG2324 (our database) --verbose
 
 cat phyloplan_out.tsv   -> 
 

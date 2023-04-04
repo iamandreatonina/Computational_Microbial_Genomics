@@ -80,7 +80,6 @@ DA AGGIUNGERE LE INFO SULLE PROTEINE GUARDANDO I BIN? MA QUI O NELLA PARTE DI AN
 
 \chapter{Methods}
 \section{Softwares and parameters used}
-- What software you used for each purpose, what parameters
 \subsection{Genome annotation (Prokka)}
 
 Prokka is a fast and accurate command line software tool used to annotate prokaryoyic genomes.  It produces standards-compliant output files that can be used for further analysis or viewing in genome browsers.
@@ -114,7 +113,7 @@ The main output of Roary is a tree obtained using the presence and absence of th
 Roary returns three graphs, the newick tree associated to the pangenome table, a pie chart of the breakdown of genes and the number of isolate they are present in, a graph with the frequency of genes versus the number of genomes. \cite{Roary-outputs}
 
 
-There are some main parameters that need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the -i parameter, specifing the percentage identity of blastp, here used at 95\%, \code{-i 95}; the -cd parameter, percentage of isolates a gene must be in to be considered part of the core genome, here setted at 90\%, \code{-cd 90}.
+There are some main parameters that need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the , \code{-i} parameter, specifing the percentage identity of blastp, here used at 95\%; the , \code{-cd} parameter, percentage of isolates a gene must be in to be considered part of the core genome, here setted at 90\%.
 \\ \newline \\ \code{roary .gff -i 95 -cd 90} \\ \newline \\
 
 
@@ -130,7 +129,7 @@ The main parameters sto be specified are the \code{-e} parameter,needed to perfo
 \\
 The core gene aligment can be used to construct a phylogenetic tree. This is possible using FastTree, a tool for constructing large phylogenies, estimating their reliability. FastTree exploit Neighbor-Joining and nearest neighbor interchanges to create a phylogentic tree. \cite{FastTree}
 Specifically, we used FastTreeMP, that allow the parallelization of the steps needed in computing a tree \cite{FTMP}.
-The tree is obtained using the following code,\\ \newline \\ \code{FastTreeMP -gtr -nt -out core\_gene.tre core\_gene\_alignment.aln},\\ \newline \\ in which the parameter \code{-gtr}, the generalized time-reversible model (to be used with nucleotide alignments only), the parameter \code{-nt} is used to specify that the alignment is performed on nucleotides.
+The tree is obtained using the following code,\\ \newline \\ \code{FastTreeMP -gtr -nt -out core\_gene.tre core\_gene\_alignment.aln},\\ \newline \\ in which the parameter \code{-gtr} express the generalized time-reversible model (to be used with nucleotide alignments only) while the parameter \code{-nt} is used to specify that the alignment is performed on nucleotides.
 
 
 
@@ -138,20 +137,8 @@ The tree is obtained using the following code,\\ \newline \\ \code{FastTreeMP -g
 \subsection{Taxonomic assignment (PhyloPhlAn 3.0)}
 
 PhyloPhlAn 3.0 is an accurate and rapid tool to perform microbial genome characterization and phylogenetic analysis both of newly assembled microbial genomes and metagenomes. PhyloPhlAn 3.0 can integrate public genome resources/information to the genomes in input and is also accurate at the strain and species level and allow the assign to each bin obtained via metagenomic assembly its closest species-level genome bins \cite{Phylo}.
-There are some main parameters needed to be specified, mainly, the input folder with the \code{-i} parameter; the output folder, with the parameter \code{-o}; the \code{--nproc} parameter, used to specify the CPUs that can be used; the \code{-n} parameter that allow us to decide  how many SGBs (sorted by increasing average genomic distance) will be reported for each input bin in the output file; the \code{--database\_update} parameter to update the databases file, the \code{-d} parameter to specify the name of the output database adn finally, the \code{--verbose} parameter to print to the bash.
+There are some main parameters needed to be specified, mainly, the input folder with the \code{-i} parameter; the output folder, with the parameter \code{-o}; the \code{--nproc} parameter, used to specify the CPUs that can be used; the \code{-n} parameter that allow us to decide  how many SGBs (sorted by increasing average genomic distance) will be reported for each input bin in the output file; the \code{--database\_update} parameter to update the databases file, the \code{-d} parameter to specify the name of the output database adn finally, the \code{--verbose} parameter to print to the bash \cite{PhyloGuide}.
 The final command is the following:\\ \newline \\ \code{phylophlan\_metagenomic -i phylo -o phylo\_out --nproc 4 -n 1 --database\_update -d CMG2324 --verbose}
-\\
-\newline
-\\
-The phylophlan\_metagenomic script has three different types of outputs: (1) list of the top -n/--how\_many SGBs sorted by their average Mash distance, (2) closest SGB, GGB, FGB, and reference genomes, and (3) "all vs. all" matrix of all pairwise Mash distances.
-Output 1
-Each line reports the bin name and the list of the closest SGBs (sorted by their increasing average Mash distance) in a tab-separated fashion. The information of each SGB are separated by :.
-Similar to Output 1., with the difference that the information reported are for the closest SGB, then the closest GGB, followed by the closest FGB, and finally the closest reference genomes, according to their respective Mash distances.
-Output 3
-In this case, phylophlan\_metagenomic produces a square matrix of all pairwise distances of the only input bins against themselves.
-
-
-\subsection{Association with host data}
 
 \chapter{Results and discussion}
 
@@ -205,7 +192,13 @@ Looking at the Figures \ref{fig:pangenome3} and  \ref{fig:pangenome4} we can obt
 \end{figure}
 
 \section{Phylogenetic analysis and association with host data}
-comparison of phylogenetic trees based on accessory gene presence/absence or on core gene alignment. Do you detect clusters of strains? How do they associate with the metadata?
+PhyloPhlAn enable us to operate a phylogenetic analysis. The main output correspond to a list of the closest SGBs sorted by their increasing average sequence distance (Mash distance) in a tab-separated file \cite{PhyloGuide}. The information of each SGB contains specific columns:
+\\
+\\ \code{my\_bin}: is the input bin name
+\\ \code{(k|u)SGB\_ID}: the SGB ID, \textit{k} indicate a known SGB, \textit{u} indicate an unknown SGB
+\\ \code{taxa\_level}: taxonomic level the SGB has been assigned to
+\\ \code{taxonomy}: the full taxonomic label assigned to the SGB
+\\ \code{average\_mash\_distance}: the distance is calculated with respect to all the genomes in the SGB.
 
 \chapter{Conclusion}
 
@@ -275,6 +268,9 @@ Price MN, Dehal PS, Arkin AP, \emph{FastTree 2–approximately maximum-likelihoo
 \bibitem{Phylo}
 Asnicar, F., Thomas, A.M., Beghini, F. et al.
 \emph{Precise phylogenetic analysis of microbial isolates and genomes from metagenomes using PhyloPhlAn 3.0.} Nat Commun 11, 2500 (2020).\\ https://doi.org/10.1038/s41467-020-16366-7
+
+\bibitem{PhyloGuide}
+\emph{https://github.com/biobakery/phylophlan/wiki}
 
 
 \bibitem{Analysis-roary}
