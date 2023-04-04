@@ -131,7 +131,8 @@ The final command is the following:\\ \newline \\ \code{phylophlan\_metagenomic 
 
 We were provided with a set of 30 high-quality prebinned metagenomes grouped in the same uSGB labelled SGB15132.
 
-The bins have a completeness higher that 97.3, as shown in the Figure \ref{fig:compl} and the maximum redundacy registered is equal to 2.25.
+As shown in the Figure \ref{fig:compl} the bins have a completeness higher that 97.3 and the maximum redundacy registered is equal to 2.25.
+The avarage values are : ..... as can be seen in the Figure \ref{fig:avarage}.
 
 \begin{figure}[ht]
 \centering
@@ -202,7 +203,14 @@ PhyloPhlAn enable us to operate a phylogenetic analysis. The main output corresp
 \\ \code{average\_mash\_distance}: the distance is calculated with respect to all the genomes in the SGB.
 
 In our case, for each MAG we get the same taxa\_level, the species Flavonifractor plautii, a strictly anaerobic rod shaped bacterium. It is a commensal of the human intestinal microbiota which is  \cite{Plauti}
+
+
 \chapter{Conclusion}
+Thanks to this project it was possible to obtain an insight of the metagenome workflow and the main analysis that are neeed when dealing with unkown genomes.
+We initially investigated the uSGB we were given computing general statistics on the quality and the associated metadata.
+We then performed a process of gene annotation and retrived informations about the number of coding sequences and hypotetical proteins in these CDS (Figure \ref{fig:CDS}).
+We than were able to perform a pangenome analysis and hypotize that the pangenome of our SGB is closed as the addition of new genomes gives us little to no information as shown in the Figure \ref{fig:pangenome4}. Also, it was possible to identify the genes shared by at least 90\% of our MAGs, the core genome, these correspons to $\sim$ 15\% of the total gene.
+From the taxonomix assigment of the uSGB it was possible to identify the \textit{} family and specifically the \textit{} species.
 
 
 
