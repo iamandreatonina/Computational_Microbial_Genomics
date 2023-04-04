@@ -1,7 +1,7 @@
 \documentclass[a4paper,titlepage]{book}
 \usepackage[signatures, swapnames,nouppercase]{frontespizio}
 \usepackage[english]{babel}
-\usepackage[a4paper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[a4paper, top=2cm, bottom=2cm, left=1.5cm, right=1.5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{amsmath} % or simply amstext
 \usepackage{subfig}
@@ -67,6 +67,9 @@ We were provided with a set of 30 high-quality prebinned metagenomes grouped in 
 
 The bins have a completeness higher that 97.3, as shown in the Figure \ref{fig:compl} and the maximum redundacy registered is equal to 2.25.
 
+DA AGGIUNGERE LE INFO SULLE PROTEINE GUARDANDO I BIN? MA QUI O NELLA PARTE DI ANNOTATION??
+
+
 
 \begin{figure}[ht]
 \centering
@@ -86,7 +89,8 @@ Prokka expect one single input file in a FASTA format, containing an assembled g
 Prokka produces several outputs file, listed in the Figure \ref{fig:prokka-output}  \cite{Prokka}.
 
 We need to specify several parameters, specifically, the input files, our MAGs, the output directory \code{--outdir} and the parameter \code{--kingdom Bacteria} that is needed to specify the annotation mode, to make the prokka more fast.
-\\ \code{prokka --kingdom Bacteria --outdir SGB15132\_prokka\_output .f*}.
+\\ \newline \\
+\code{prokka --kingdom Bacteria --outdir SGB15132\_prokka\_output .f*}.
 
 %such as the .fna file that represent a complete fasta file and contains the genome of the organism; the .faa file, that contains the amminoacids of the encoded proteins; the .tsv file that is a table summary of the annotations of the proteins with a description; finally, a .gbk file, a genome bank file.
 
@@ -111,25 +115,40 @@ Roary returns three graphs, the newick tree associated to the pangenome table, a
 
 
 There are some main parameters that need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the -i parameter, specifing the percentage identity of blastp, here used at 95\%, \code{-i 95}; the -cd parameter, percentage of isolates a gene must be in to be considered part of the core genome, here setted at 90\%, \code{-cd 90}.
-\\ \code{roary .gff -i 95 -cd 90}.
+\\ \newline \\ \code{roary .gff -i 95 -cd 90} \\ \newline \\
 
 
 With Roary it is also possible to perform a core gene alignment to generate a more reliable tree. A core-genome alignment is more scalable with respect to the whole-genome alignment. It is an alignment useful to identify the core genes conserved in all aligned genomes and that can be very useful to infer the phylogeny \cite{Core-align}.
 
 The main parameters sto be specified are the \code{-e} parameter,needed to perform a core gene alignment; the \code{-n} parameter, to use mafft as the tool for the multiple sequence alignmet, making the process faster and finally the parameter \code{-p}, needed to specify the number of threads, increasing therefore the speed \cite{Roary}.
-\\ \code{roary .gff -i 95 -cd 90 -e -n -p 8}.
-
+\\
+\newline
+\\
+\code{roary .gff -i 95 -cd 90 -e -n -p 8}.
+\\
+\newline
+\\
 The core gene aligment can be used to construct a phylogenetic tree. This is possible using FastTree, a tool for constructing large phylogenies, estimating their reliability. FastTree exploit Neighbor-Joining and nearest neighbor interchanges to create a phylogentic tree. \cite{FastTree}
 Specifically, we used FastTreeMP, that allow the parallelization of the steps needed in computing a tree \cite{FTMP}.
-The tree is obtained using the following code, \code{FastTreeMP -gtr -nt -out core\_gene.tre core\_gene\_alignment.aln}, in which the parameter \code{-gtr}, the generalized time-reversible model (to be used with nucleotide alignments only), the parameter \code{-nt} is used to specify that the alignment is performed on nucleotides.
+The tree is obtained using the following code,\\ \newline \\ \code{FastTreeMP -gtr -nt -out core\_gene.tre core\_gene\_alignment.aln},\\ \newline \\ in which the parameter \code{-gtr}, the generalized time-reversible model (to be used with nucleotide alignments only), the parameter \code{-nt} is used to specify that the alignment is performed on nucleotides.
 
 
 
 
 \subsection{Taxonomic assignment (PhyloPhlAn 3.0)}
 
-PhyloPhlAn 3.0 is an accurate and rapid tool to perform microbial genome characterization and phylogenetic analysis both of newly assembled microbial genomes and metagenomes. PhyloPhlAn 3.0 can integrate public genome resources/information to the genomes in input and is also accurate at the strain and species level. \cite{Phylo}
-The main input to be sopecified are :...
+PhyloPhlAn 3.0 is an accurate and rapid tool to perform microbial genome characterization and phylogenetic analysis both of newly assembled microbial genomes and metagenomes. PhyloPhlAn 3.0 can integrate public genome resources/information to the genomes in input and is also accurate at the strain and species level and allow the assign to each bin obtained via metagenomic assembly its closest species-level genome bins \cite{Phylo}.
+There are some main parameters needed to be specified, mainly, the input folder with the \code{-i} parameter; the output folder, with the parameter \code{-o}; the \code{--nproc} parameter, used to specify the CPUs that can be used; the \code{-n} parameter that allow us to decide  how many SGBs (sorted by increasing average genomic distance) will be reported for each input bin in the output file; the \code{--database\_update} parameter to update the databases file, the \code{-d} parameter to specify the name of the output database adn finally, the \code{--verbose} parameter to print to the bash.
+The final command is the following:\\ \newline \\ \code{phylophlan\_metagenomic -i phylo -o phylo\_out --nproc 4 -n 1 --database\_update -d CMG2324 --verbose}
+\\
+\newline
+\\
+The phylophlan\_metagenomic script has three different types of outputs: (1) list of the top -n/--how\_many SGBs sorted by their average Mash distance, (2) closest SGB, GGB, FGB, and reference genomes, and (3) "all vs. all" matrix of all pairwise Mash distances.
+Output 1
+Each line reports the bin name and the list of the closest SGBs (sorted by their increasing average Mash distance) in a tab-separated fashion. The information of each SGB are separated by :.
+Similar to Output 1., with the difference that the information reported are for the closest SGB, then the closest GGB, followed by the closest FGB, and finally the closest reference genomes, according to their respective Mash distances.
+Output 3
+In this case, phylophlan\_metagenomic produces a square matrix of all pairwise distances of the only input bins against themselves.
 
 
 \subsection{Association with host data}
@@ -139,6 +158,11 @@ The main input to be sopecified are :...
 
 \section{Genome annotation}
 After the gene annotation process, possible using prokka, we were able to identify that the number of the CDS (protein coding sequence) is slightly variable, spanning from a minimun value of 2651 to a max of 3935. For each MAG, more or less a half of the CDS are known proteins, while the other half is represented by RNA or hypotetical proteins.
+
+
+DA FARE IL GRAFICO CON LIVELLO CDS, LIVELLO UNKNOWN PROTEINS E ??? COME HA FATTO VITTORIA
+
+
 \section{Pangenome analysis}
 
 
@@ -168,14 +192,14 @@ Looking at the Figures \ref{fig:pangenome3} and  \ref{fig:pangenome4} we can obt
 
 \begin{figure}[ht]
 \centering
-\includegraphics[scale=0.2]{Graphs/conserved\_vs\_total\_genes.png}
+\includegraphics[scale=0.4]{Graphs/conserved\_vs\_total\_genes.png}
 \caption{Conserved vs Total genes}
 \label{fig:pangenome3}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[scale=0.2]{Graphs/unique\_vs\_new\_genes.png}
+\includegraphics[scale=0.4]{Graphs/unique\_vs\_new\_genes.png}
 \caption{Unique vs New genes}
 \label{fig:pangenome4}
 \end{figure}
