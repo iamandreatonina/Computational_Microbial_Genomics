@@ -62,9 +62,11 @@ With the term pangenome, we indicate the union of the \textit{core genome}, cont
 DA SPIEGARE IL PANGENOME ANAYSIS E LE ALTRE ANALISI CHE FACCIAMO??
 
 \section{uSGB 15132}
+
 We were provided with a set of 30 high-quality prebinned metagenomes grouped in the same uSGB labelled SGB15132.
 
 The bins have a completeness higher that 97.3, as shown in the Figure \ref{fig:compl} and the maximum redundacy registered is equal to 2.25.
+
 
 \begin{figure}[ht]
 \centering
@@ -84,7 +86,7 @@ Prokka expect one single input file in a FASTA format, containing an assembled g
 Prokka produces several outputs file, listed in the Figure \ref{fig:prokka-output}  \cite{Prokka}.
 
 We need to specify several parameters, specifically, the input files, our MAGs, the output directory \code{--outdir} and the parameter \code{--kingdom Bacteria} that is needed to specify the annotation mode, to make the prokka more fast.
-\\ \code{prokka --kingdom Bacteria --outdir SGB15132\_prokka\_output .f*na}.
+\\ \code{prokka --kingdom Bacteria --outdir SGB15132\_prokka\_output .f*}.
 
 %such as the .fna file that represent a complete fasta file and contains the genome of the organism; the .faa file, that contains the amminoacids of the encoded proteins; the .tsv file that is a table summary of the annotations of the proteins with a description; finally, a .gbk file, a genome bank file.
 
@@ -95,7 +97,7 @@ We need to specify several parameters, specifically, the input files, our MAGs, 
 \label{fig:prokka-output}
 \end{figure}
 
-\subsection{Pangenome analysis (Roary)}
+\subsection{Pangenome analysis and Phylogenetic analysis (Roary, Roary + FastTree)}
 
 Roary is a tool that enables the construction of large-scale prokaryote pangenomes, identifying the core and accessory genes.
 
@@ -103,34 +105,48 @@ The input file to Roary is a GFF file containing sequences features.
 
 Roary collects the coding regions from the annotated input genome. It operates a clustering process creating a network and defining a phylogenetic tree. A matrix is therefore obtained and the pangenome (core genes and accessory genes) is defined.  The process of clustering is based on the minimum percentage of identity, setted to 95\% by default \cite{Roary}.
 
-Roary returns three graphs, the newick tree associated to the pamgenome table, a pie chart of the breakdown of genes and the number of isolate they are present in, a graph with the frequency of genes versus the number of genomes. \cite{Roary-outputs}
+The main output of Roary is a tree obtained using the presence and absence of the accessory genes. It is a tree used to have an initial insight of the data, grouping in a quick way the genomes based on their accessory genes \cite{Roary}. It can be visualized using iTOL, an online tool for phylogenetic tree display \cite{iTOL}.
+
+Roary returns three graphs, the newick tree associated to the pangenome table, a pie chart of the breakdown of genes and the number of isolate they are present in, a graph with the frequency of genes versus the number of genomes. \cite{Roary-outputs}
 
 
-There are some main parameters that need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the -i parameter, specifing the percentage identity of blastp, here used at 95\%, \code{-i 95}; the -cd parameter, percentage of isolates a gene must be in to be considered part of the core genome, here setted at 90\%, \code{-cd 90}; the \code{-e} parameter, to perform a core gene alignment; the \code{-n} parameter, to use mafft as the tool for the multiple sequence alignmet, making the process faster and finally the parameter \code{-p}, needed to specify the number of threads, increasing therefore the speed \cite{Roary}.
+There are some main parameters that need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the -i parameter, specifing the percentage identity of blastp, here used at 95\%, \code{-i 95}; the -cd parameter, percentage of isolates a gene must be in to be considered part of the core genome, here setted at 90\%, \code{-cd 90}.
+\\ \code{roary .gff -i 95 -cd 90}.
+
+
+With Roary it is also possible to perform a core gene alignment to generate a more reliable tree. A core-genome alignment is more scalable with respect to the whole-genome alignment. It is an alignment useful to identify the core genes conserved in all aligned genomes and that can be very useful to infer the phylogeny \cite{Core-align}.
+
+The main parameters sto be specified are the \code{-e} parameter,needed to perform a core gene alignment; the \code{-n} parameter, to use mafft as the tool for the multiple sequence alignmet, making the process faster and finally the parameter \code{-p}, needed to specify the number of threads, increasing therefore the speed \cite{Roary}.
 \\ \code{roary .gff -i 95 -cd 90 -e -n -p 8}.
+
+The core gene aligment can be used to construct a phylogenetic tree. This is possible using FastTree, a tool for constructing large phylogenies, estimating their reliability. FastTree exploit Neighbor-Joining and nearest neighbor interchanges to create a phylogentic tree. \cite{FastTree}
+Specifically, we used FastTreeMP, that allow the parallelization of the steps needed in computing a tree \cite{FTMP}.
+The tree is obtained using the following code, \code{FastTreeMP -gtr -nt -out core\_gene.tre core\_gene\_alignment.aln}, in which the parameter \code{-gtr}, the generalized time-reversible model (to be used with nucleotide alignments only), the parameter \code{-nt} is used to specify that the alignment is performed on nucleotides.
+
+
+
 
 \subsection{Taxonomic assignment (PhyloPhlAn 3.0)}
 
 PhyloPhlAn 3.0 is an accurate and rapid tool to perform microbial genome characterization and phylogenetic analysis both of newly assembled microbial genomes and metagenomes. PhyloPhlAn 3.0 can integrate public genome resources/information to the genomes in input and is also accurate at the strain and species level. \cite{Phylo}
 The main input to be sopecified are :...
 
-\subsection{Phylogenetic analysis (Roary+FastTree)}
-
-Roary enable us to generate a core gene alignment of our uSGB using as specific parametres -e, --mafft and -p, \textbf{roary -e --mafft -p 8 *.gff}. This aligment can be used to construct a phylogenetic tree, this is possible using FastTree, a tool for constructing large phylogenies, estimating their reliability.
-FastTree exploit Neighbor-Joining and nearest neighbor interchanges to create a phylogentic tree. \cite{FastTree}
 
 \subsection{Association with host data}
 
 \chapter{Results and discussion}
-- Description of the set of bins: where do your MAGs come from, to what SGB do they belong, completeness and contamination
+
+
 \section{Genome annotation}
 After the gene annotation process, possible using prokka, we were able to identify that the number of the CDS (protein coding sequence) is slightly variable, spanning from a minimun value of 2651 to a max of 3935. For each MAG, more or less a half of the CDS are known proteins, while the other half is represented by RNA or hypotetical proteins.
 \section{Pangenome analysis}
 
 
 
-Each SGB strain was found to contain an average of 1317 genes that are present in every strain (core genome), plus 8407 genes that are absent in more than one strains (strain $<$ 30) (accessory genome). This can be seen in the Figure \ref{fig:pangenome2}, showing the frequency plot of the genes per genome.
+Each SGB strain was found to contain an average of 1317 genes that are present in every strain (core genome), plus 8407 genes that are absent in more than one strains (strain $<$ 30) (accessory genome). This can be seen in the Figure \ref{fig:pangenome2}, showing the frequency plot of the genes per genome, this plot gives a general overview of the frequency of genes within a whole genome set, typically these plots have an shape and most genes can be detected in a single genome or in all genomes \cite{Analysis-roary}. Here it is shown that the number of genes present in all the genomes correspond to the number of core genes.
 The accessory genes are also divided into genes present in only one strain (cloud genome) or genes present in two or more strains but not all strains (shell genome) \cite{Medini}. The figure \ref{fig:pangenome1} show the subparts constituting the pangenome, associated with the total number of genes.
+
+
 
 \begin{figure}[ht]
 \centering
@@ -147,9 +163,9 @@ The accessory genes are also divided into genes present in only one strain (clou
 \end{figure}
 
 
-What’s the size of your pangenome? Is it closed or open? How many core and accessory genes?
+Looking at the Figures \ref{fig:pangenome3} and  \ref{fig:pangenome4} we can obtain/derive an idea on the pangenome, specifically if it is open or closed. It is important to remember that these results were obtained using only 30 metagenomes, making the process of discussion more complex. Even though, looking at the Conserved vs Total genes plot in Figure \ref{fig:pangenome3}, we can argue that the total genes initial slope is very high but at the end, when almost all the genomes were added, the slope start to decrease. The conserved gene line is almost stationary, with litte changes when the genomes are all added. Only looking at this graph it is difficult to define if the pangenome is open or closed, therefore, the observation of the Unique vs New genes plot can be useful. Looking at the Figure \ref{fig:pangenome4}, we can see that, adding new genomes doesn't give new information, the number of new genes is almost at zero when we add the last genome. This help us to state with a good security that the pangenome is closed.
 
-DA COMMENTARELE IMMAGINI OTTENUTE CON R STUDIO -> PER DIRE SE IL PANGENOME è APERTO O CHIUSO
+
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.2]{Graphs/conserved\_vs\_total\_genes.png}
@@ -215,15 +231,30 @@ Torsten Seemann,\emph{Prokka: rapid prokaryotic genome annotation,} Bioinformati
 \bibitem{Roary}
 Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MT, Fookes M, Falush D, Keane JA, Parkhill J. \emph{Roary: rapid large-scale prokaryote pan genome analysis.} Bioinformatics. 2015 Nov 15; 31(22):3691-3. \\doi: 10.1093/bioinformatics/btv421
 
+\bibitem{iTOL}
+Ivica Letunic, Peer Bork, \emph{Interactive Tree Of Life (iTOL) v5: an online tool for phylogenetic tree display and annotation}, Nucleic Acids Research, Volume 49, Issue W1, 2 July 2021, Pages W293–W296, \\https://doi.org/10.1093/nar/gkab301
+
 \bibitem{Roary-outputs}
 \emph{https://sanger-pathogens.github.io/Roary/}
+
+\bibitem{Core-align}
+Treangen, T.J., Ondov, B.D., Koren, S. et al. \emph{The Harvest suite for rapid core-genome alignment and visualization of thousands of intraspecific microbial genomes.} Genome Biol 15, 524 (2014).\\https://doi.org/10.1186/s13059-014-0524-x
+
+\bibitem{FastTree}
+Morgan N. Price, Paramvir S. Dehal, Adam P. Arkin, \emph{FastTree: Computing Large Minimum Evolution Trees with Profiles instead of a Distance Matrix, Molecular Biology and Evolution,} Volume 26, Issue 7, July 2009, Pages 1641–1650, \\https://doi.org/10.1093/molbev/msp077
+
+
+\bibitem{FTMP}
+Price MN, Dehal PS, Arkin AP, \emph{FastTree 2–approximately maximum-likelihood trees for large alignments}. PLoS One. 2010, 5\\doi: e9490-10.1371/journal.pone.0009490.
+
 
 \bibitem{Phylo}
 Asnicar, F., Thomas, A.M., Beghini, F. et al.
 \emph{Precise phylogenetic analysis of microbial isolates and genomes from metagenomes using PhyloPhlAn 3.0.} Nat Commun 11, 2500 (2020).\\ https://doi.org/10.1038/s41467-020-16366-7
 
-\bibitem{FastTree}
-Morgan N. Price, Paramvir S. Dehal, Adam P. Arkin, \emph{FastTree: Computing Large Minimum Evolution Trees with Profiles instead of a Distance Matrix, Molecular Biology and Evolution,} Volume 26, Issue 7, July 2009, Pages 1641–1650, \\https://doi.org/10.1093/molbev/msp077
+
+\bibitem{Analysis-roary}
+\emph{https://help.ezbiocloud.net/gene-frequency-plot-in-pan-genome/}
 
 
 \end{thebibliography}

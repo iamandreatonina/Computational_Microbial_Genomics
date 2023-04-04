@@ -9,12 +9,7 @@ bunzip2 *bz2
 
 for mag in $(ls *.fn*a);
 do
-prokka --kingdom Bacteria --outdir SGB15132_prokka_output/${mag//.fn*a} --prefix ${mag} ${mag};
-done
-
-for mag in $(ls *.fa);
-do
-prokka --kingdom Bacteria --outdir SGB15132_prokka_output/${mag//.fa} --prefix ${mag} ${mag};
+prokka --kingdom Bacteria --outdir SGB15132_prokka_output/${mag//.f*} --prefix ${mag} ${mag};
 done
 
 # Annotations:
@@ -287,6 +282,79 @@ This command produce a core gene alignment, to get a better tree -> thanks to th
 Can also use the -n parameter, we get a faster alignment. If we don't use -n it uses PRANK instead of mafft and it takes a little more time -> take some hours!!
 PRANK: https://pubmed.ncbi.nlm.nih.gov/24170401/ (alternatively: mafft)
 
+
+
+LAB- PROJECT: Taxonomic assignment and phylogenetic analysis
+
+Phylogenetic structure of our bins (Roary + FastTree)
+
+RECAP: genomes in fasta files -> blast -> hits and creation of clusters -> core genes and accessory ones.
+
+Roary: gene clustering + pangenome presence/absence of gene families (or clusters)
+
+Closed pangenome if no metter how many mags we add, we don't have new genes.
+Open pangenome if there are always new genes -> increase the size of the pangenome.
+
+
+OUR CASE: we should fit a curve to see if it gets or not to a plateux.  With 30 genomes it is difficut to say, we can argue that the initial slope is high but at the end (when we almost added all the genomes), the slope decrease and almost go to a plateux. Looking at the new vs total genes, we can see that, adding new genomes doesn't give new information, almost at zero when we add the last genome (the 30th), we can therefore say that the pangenome is closed.
+
+1) Look at the tree without the alignemnt -> accessory_binary_genes.fa.newick
+Visualize trees via:
+-> iTOL: https://itol.embl.de/ -> we can upload a tree file -> we can see how the different MAGs are distributes -> look at the branches and if the MAGs of the same dataset are in the same branch -> like if the CHN samples are togheter -> if two branches/leafs are very close to each other in the orizontal point of view -> they usually are part of the same dataset.
+                               -> WE CAN CHANGE THE APPEARANCE OF THE TREE ADDING COLOURS OR ADDING THE TAXONOMY
+-> Archaeopteryx: https://www.phylosoft.org/archaeopteryx/
+-> ggtree R package
+
+
+
+2) Core gene alignment tree (Roary -e) -> once we have an alignment built
+1-> conda activate roary (our inviroment with FastTree)
+2-> FastTree
+3-> FastTree -nt < core_gene_alignment.aln > core_gene.tre
+4-> FastTreeMP –gtr –nt –out core_gene.tre core_gene_alignment.aln
+-> gtr -- generalized time-reversible model (nucleotide alignments only)
+-> nt for nucleotides
+-> out for the output
+
+FastTree
+
+#tune some parameters to speed it up:
+1-> FastTreeMP -pseudo -spr 4 -mlacc 2 -slownni -fastest -no2nd -mlnni 4 -gtr -nt -out core_gene_quick_tre core_gene_alignment.aln 
+
+pseudo -- to use pseudocounts (recommended for highly gapped sequences)
+fastest -- speed up the neighbor joining phase & reduce memory usage
+topology refinement parameters: -spr, -mlnni, -
+Visualize tree: https://itol.embl.de/ -> let's see if it is different -> we can add numbers in the tree (control panel -> advanced ) -> between 0 and 1 -> if =1 then we suppost completly the separation of the branches, low number means that there is a small support for the split of the branches -> we are not sure that these two branches are separated or not -> low numbers in the leaf is not a big problem, in the main branchesit is because the tree is not so affidabile!
+-> output of the MSA should be more accurate -> look at th enumbers in the branches!!
+
+We can compare the two trees -> the second one is based on the MSA of the core genes while the first one is based on the presence absence
+
+
+LAB - TAXONOMIX CHARACTERIZATION + ANNOTATION 
+-> name for the taxa levels that were selected/associated
+-> we use phyloPLHAn -> taxonomic assignemnt, for each genome, if there is less than 5% distance then it associate that bin to that taxonomic annotation
+
+mkdir phylophlan_input -> contains the fatsa files of teh MAGS
+conda activate phyloplan
+
+phyloplan_metagenomic -i phyluplan_input -o phylo_out --nproc 4 -n 1 (=return the best match, with a large database we use -n 5) --database_update -d CMG2324 (database) --verbose
+
+cat phyloplan_out.tsv   -> 
+
+
+PROJECT: 4/5 pages, 2000 words
+Fihures as much as you want, put always a caption
+our data comes stool metagenomes -> possible contamination and completeness of the SGB
+annotation -> functions encoded, number of proteins
+pangenome analysis -> close or open pangenome -> with 30 pangenome it is difficult, need to discuss it. How many core genes and many accessory genes.
+phylogenetic analysis -> compare the tree, see if tehre is an association with the metadata (mainlt controls or disease)
+
+15 minutes, 5 minutes per person, more or less 5 slides, each present a part, then a question per person -> with these they give the mark.
+
+
+
+
+
 INFO SGB:
 Samples obtained from body_site stool -> The material in a bowel movement. Stool is made up of undigested food, bacteria, mucus, and cells from the lining of the intestines. Also called feces.
 
@@ -306,10 +374,6 @@ NB samples that have a disease (=no control) are from CHN, except one that is AU
 The 3 Chenngpingw_2017 are all from the same study -> DOI: 10.1186/s13059-017-1271-6
 
 Patient from AUT -> DOI: 10.26036/CNPhis0000103
-
-
-
-
 
 
 
