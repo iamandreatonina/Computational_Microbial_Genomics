@@ -61,22 +61,7 @@ With the term pangenome, we indicate the union of the \textit{core genome}, cont
 
 DA SPIEGARE IL PANGENOME ANAYSIS E LE ALTRE ANALISI CHE FACCIAMO??
 
-\section{uSGB 15132}
 
-We were provided with a set of 30 high-quality prebinned metagenomes grouped in the same uSGB labelled SGB15132.
-
-The bins have a completeness higher that 97.3, as shown in the Figure \ref{fig:compl} and the maximum redundacy registered is equal to 2.25.
-
-DA AGGIUNGERE LE INFO SULLE PROTEINE GUARDANDO I BIN? MA QUI O NELLA PARTE DI ANNOTATION??
-
-
-
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.7]{completeness\_distribution.png}
-\caption{Completeness distribution of the given MAGs.}
-\label{fig:compl}
-\end{figure}
 
 \chapter{Methods}
 \section{Softwares and parameters used}
@@ -142,13 +127,29 @@ The final command is the following:\\ \newline \\ \code{phylophlan\_metagenomic 
 
 \chapter{Results and discussion}
 
+\section{uSGB 15132}
+
+We were provided with a set of 30 high-quality prebinned metagenomes grouped in the same uSGB labelled SGB15132.
+
+The bins have a completeness higher that 97.3, as shown in the Figure \ref{fig:compl} and the maximum redundacy registered is equal to 2.25.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.7]{completeness\_distribution.png}
+\caption{Completeness distribution of the given MAGs.}
+\label{fig:compl}
+\end{figure}
 
 \section{Genome annotation}
-After the gene annotation process, possible using prokka, we were able to identify that the number of the CDS (protein coding sequence) is slightly variable, spanning from a minimun value of 2651 to a max of 3935. For each MAG, more or less a half of the CDS are known proteins, while the other half is represented by RNA or hypotetical proteins.
+After the gene annotation process, possible using prokka, we were able to identify that the number of the CDS (protein coding sequence) is slightly variable, spanning from a minimun value of 2651 to a max of 3935. For each MAG, as shown in the Figure \ref{fig:CDS} more or less a half of the CDS are known proteins, while the other half is represented by RNA or hypotetical proteins.
 
 
-DA FARE IL GRAFICO CON LIVELLO CDS, LIVELLO UNKNOWN PROTEINS E ??? COME HA FATTO VITTORIA
-
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.4]{CDS\_hypothetical\_knowns.png}
+\caption{Main annotation results}
+\label{fig:CDS}
+\end{figure}
 
 \section{Pangenome analysis}
 
@@ -200,6 +201,7 @@ PhyloPhlAn enable us to operate a phylogenetic analysis. The main output corresp
 \\ \code{taxonomy}: the full taxonomic label assigned to the SGB
 \\ \code{average\_mash\_distance}: the distance is calculated with respect to all the genomes in the SGB.
 
+In our case, for each MAG we get the same taxa\_level, the species Flavonifractor plautii, a strictly anaerobic rod shaped bacterium. It is a commensal of the human intestinal microbiota which is  \cite{Plauti}
 \chapter{Conclusion}
 
 
@@ -275,6 +277,9 @@ Asnicar, F., Thomas, A.M., Beghini, F. et al.
 
 \bibitem{Analysis-roary}
 \emph{https://help.ezbiocloud.net/gene-frequency-plot-in-pan-genome/}
+
+\bibitem{Plauti}
+Berger FK, Schwab N, Glanemann M, Bohle RM, Gärtner B, Groesdonk HV. \emph{Flavonifractor (Eubacterium) plautii bloodstream infection following acute cholecystitis.} IDCases. 2018 Oct 28;14:e00461. \\doi: 10.1016/j.idcr.2018.e00461.
 
 
 \end{thebibliography}
