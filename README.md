@@ -16,7 +16,7 @@ LINKS:
 - [ ] Check the introduction and write the info about our SGB -> also if possible at the assosciated papers
 - [ ] Methods to read and add code step by step and explenation of the paramiters 
 - [ ] Results
-- [ ] Presentation   
+- [X] Presentation   
 
 ---
 
@@ -37,8 +37,8 @@ LINKS:
 - [X] Genome annotation (prokka)
 - [X] Pangeonme analysis (roary)
 - [X] Taxonomic assignments (PhyloPhlan 3.0)
-- [ ] Phylogenetic alignments 
-- [ ] Assosciation with host data 
+- [X] Phylogenetic alignments 
+- [X] Assosciation with host data 
 
 
 
