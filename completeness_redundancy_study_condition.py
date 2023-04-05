@@ -12,13 +12,13 @@ max_completeness = df['completeness'].max()
 print('{} \t {} \t {}'.format('min','avg','max'))
 print('{} \t {} \t {}'.format(min_completeness,avg_completeness,max_completeness))
 
-# df.plot(kind='bar', x= 'bin', y='completeness')
-# plt.ylim(95,100)
-# plt.legend()
-# plt.title('completeness of MAGs')
-# plt.savefig('completeness_distribution.png')
-# plt.show()
-# plt.close()
+df.plot(kind='bar', x= 'bin', y='completeness')
+plt.ylim(95,100)
+plt.legend()
+plt.title('completeness of MAGs')
+plt.savefig('completeness_distribution.png')
+plt.show()
+plt.close()
  
 ############ redundancy
 min_redundancy = df['redundancy'].min()
@@ -33,9 +33,11 @@ print('{} \t {} \t {}'.format(min_redundancy,avg_redundancy,max_redundancy))
 
 total = df2['study_condition'].count()
 stud_cond = df2['study_condition'].value_counts() / total
+print(stud_cond)
 mylabels = ['control', 'hypertension','AS','adenoma','pre-hypertension','cirrhosis']
 myexplode = [0.2, 0, 0, 0, 0, 0]
 
+plt.title('Study condition',loc= 'right',fontdict= {'fontsize':18})
 plt.pie(stud_cond,labels= mylabels, explode = myexplode, shadow = True)
 plt.savefig('Study_condition.png')
 plt.show()
