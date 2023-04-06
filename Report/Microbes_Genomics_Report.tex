@@ -1,4 +1,4 @@
-\documentclass[a4paper,titlepage]{book}
+\documentclass[a4paper,titlepage, oneside]{book}
 \usepackage[signatures, swapnames,nouppercase]{frontespizio}
 \usepackage[english]{babel}
 \usepackage[a4paper, top=2cm, bottom=2cm, left=1.5cm, right=1.5cm]{geometry}
@@ -132,13 +132,21 @@ The final command is the following:\\ \newline \\ \code{phylophlan\_metagenomic 
 We were provided with a set of 31 high-quality prebinned metagenomes grouped in the same uSGB labelled SGB15132.
 
 As shown in the Figure \ref{fig:compl} the bins have a completeness higher that 97.3 and the maximum redundacy registered is equal to 2.25.
-The avarage values are : ..... as can be seen in the Figure \ref{fig:avarage}.
+The MAGs were associated to a study condition, as shown in the Figure \ref{fig:studyCondition}, we used this information to interpret the analyisis that were effectuated later on.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[scale=0.7]{completeness\_distribution.png}
+\includegraphics[scale=0.6]{completeness\_distribution.png}
 \caption{Completeness distribution of the given MAGs.}
 \label{fig:compl}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.6]{Study\_condition.png}
+\caption{Pie chart of the study condition of our MAGs}
+\label{fig:studyCondition}
 \end{figure}
 
 \section{Genome annotation}
@@ -157,8 +165,7 @@ After the gene annotation process, possible using prokka, we were able to identi
 
 
 Each SGB strain was found to contain an average of 1317 genes that are present in every strain (core genome), plus 8407 genes that are absent in more than one strains (strain $<$ 31) (accessory genome). This can be seen in the Figure \ref{fig:pangenome2}, showing the frequency plot of the genes per genome, this plot gives a general overview of the frequency of genes within a whole genome set, typically these plots have an shape and most genes can be detected in a single genome or in all genomes \cite{Analysis-roary}. Here it is shown that the number of genes present in all the genomes correspond to the number of core genes.
-The accessory genes are also divided into genes present in only one strain (cloud genome) or genes present in two or more strains but not all strains (shell genome) \cite{Medini}. The figure \ref{fig:pangenome1} show the subparts constituting the pangenome, associated with the total number of genes.
-
+The accessory genes are also divided into genes present in only one strain (cloud genome) or genes present in two or more strains but not all strains (shell genome) \cite{Medini}. The figure \ref{fig:pangenome1} show the subparts constituting the pangenome, associated with the total number of genes while the Figure \ref{fig:pangenome5} show the tree obtained via the analysis associated to heatmap in which we can easily define the core genes that are present in all the genomes. It is important to remember that the tree is not obtained with a complete clustering methodology.
 
 
 \begin{figure}[ht]
@@ -170,9 +177,16 @@ The accessory genes are also divided into genes present in only one strain (clou
 
 \begin{figure}[ht]
 \centering
+\includegraphics[scale=0.3]{pangenome\_matrix.png}
+\caption{Pangenome matrix}
+\label{fig:pangenome1}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
 \includegraphics[scale=0.5]{Graphs/pangenome\_pie.png}
 \caption{Core and accessory genome}
-\label{fig:pangenome1}
+\label{fig:pangenome5}
 \end{figure}
 
 
@@ -201,8 +215,11 @@ PhyloPhlAn enable us to operate a phylogenetic analysis. The main output corresp
 \\ \code{taxa\_level}: taxonomic level the SGB has been assigned to
 \\ \code{taxonomy}: the full taxonomic label assigned to the SGB
 \\ \code{average\_mash\_distance}: the distance is calculated with respect to all the genomes in the SGB.
+\\
+\newline
+\\In our case, for each MAG we get the same taxa\_level, the species Flavonifractor plautii, a strictly anaerobic rod shaped bacterium. It is a commensal of the human intestinal microbiota which is  usually difficult to isolate from samples \cite{Plauti}.
 
-In our case, for each MAG we get the same taxa\_level, the species Flavonifractor plautii, a strictly anaerobic rod shaped bacterium. It is a commensal of the human intestinal microbiota which is  \cite{Plauti}
+DA DIRE ALTRO?
 
 
 \chapter{Conclusion}
@@ -211,22 +228,11 @@ We initially investigated the uSGB we were given computing general statistics on
 We then performed a process of gene annotation and retrived informations about the number of coding sequences and hypotetical proteins in these CDS (Figure \ref{fig:CDS}).
 We than were able to perform a pangenome analysis and hypotize that the pangenome of our uSGB is closed as the addition of new genomes gives us little to no information as shown in the Figure \ref{fig:pangenome4}. Also, it was possible to identify the genes shared by at least ??TO CHECK?? 90\% of our MAGs, the core genome. These correspons to $\sim$ 15\% of the total gene.
 From the taxonomix assigment of the uSGB it was possible to identify the \textit{Oscillospiraceae} family and specifically the \textit{Flavonifractor plautii} species.
-
-
-Periprosthetic Hip Joint Infection with Flavonifractor plautii: A Literature Review and Case Report 
-NB Artite remautoide è un tipo di Joint infection!!
-
-Flavonifractor, the sole member of Ruminococcaceae that was associated with the depressed subjects, has previously been linked to lower quality of life scores and MDD18,23 as well as bipolar disorder15 and generalized anxiety disorder12. This genus, which currently includes the single named species F. plautii (formerly Clostridium orbiscindens and Eubacterium plautii)185, has also previously been linked to various autoimmune disorders3,7,186,187, chronic kidney disease188, and colorectal cancer189,190. Furthermore, F. plautii was demonstrated in vitro to have epithelial invasive potential191. Therefore, there is significant evidence to suggest that unlike its generally anti-inflammatory relatives, Flavonifractor may be associated with disease despite its ability to produce butyrate under some conditions185,192. As suggested in other work15,190, this is possibly related to the genus’ eponymous capacity for cleaving flavonoids that reach the colon, including antioxidants such as quercetin, although disentangling the impacts of flavonoids and their microbial breakdown products on inflammation in vivo is difficult 
-DA ARTICOLO: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7415740/
-
-
-Proposal to unify Clostridium orbiscindens Winter et al. 1991 and Eubacterium plautii (Séguin 1928) Hofstad and Aasjord 1982, with description of Flavonifractor plautii gen. nov., comb. nov., and reassignment of Bacteroides capillosus to Pseudoflavonifractor capillosus gen. nov., comb. nov
-
-Flavonifractor plautii Protects Against Elevated Arterial Stiffness
-
-We report a case where F. plautii was isolated from the blood culture of a severe burn victim and identified by matrix-assisted laser desorption ionization time-of-flight mass spectrometry.
-
-A specific human-associated gut microbe, Clostridium orbiscindens, produced DAT and rescued antibiotic-treated influenza-infected mice. DAT protected the host by priming the amplification loop of type I IFN signaling. These findings show that specific components of the enteric microbiota have distal effects on responses to lethal infections through modulation of type I IFN.
+Thanks to further invastigation on this bacteria it was found that this strain was recently obtained/created via the unification of two previuosly distinct species, specifically, Clostridium orbiscindens and Eubacterium plautii \cite{Unification}.
+\\
+\newline
+\\It is known from literature that this species is correleated with hip joint infection \cite{HipJoint}, chronic kidney disease, varoisu autoimmune disorders and epithelial invasive potential \cite{PlautiiDiseases}. Finally, this strain was associated with blood infections in immunosuppressed patients\cite{PlautiiBlood}.
+\\We think that this foundings are to keep in consideration for further analysis on this strain, since the 33\% of our samples were obtained from patients with correlated diseases like rheumatoid arthritis (a kind hip joint infection) and hypertension.
 
 
 
@@ -303,6 +309,17 @@ Asnicar, F., Thomas, A.M., Beghini, F. et al.
 \bibitem{Plauti}
 Berger FK, Schwab N, Glanemann M, Bohle RM, Gärtner B, Groesdonk HV. \emph{Flavonifractor (Eubacterium) plautii bloodstream infection following acute cholecystitis.} IDCases. 2018 Oct 28;14:e00461. \\doi: 10.1016/j.idcr.2018.e00461.
 
+\bibitem{Unification}
+Carlier, Jean-Philippe et al. \emph{Proposal to unify Clostridium orbiscindens Winter et al. 1991 and Eubacterium plautii (Séguin 1928) Hofstad and Aasjord 1982, with description of Flavonifractor plautii gen. nov., comb. nov., and reassignment of Bacteroides capillosus to Pseudoflavonifractor capillosus gen. nov., comb. nov.} International journal of systematic and evolutionary microbiology vol. 60,Pt 3 (2010): 585-590.\\doi:10.1099/ijs.0.016725-0
+
+\bibitem{HipJoint}
+Wilton, Alexander et al. \emph{Periprosthetic Hip Joint Infection with Flavonifractor plautii: A Literature Review and Case Report.} Hip and pelvis vol. 34,4 (2022): 255-261.\\doi:10.5371/hp.2022.34.4.255
+
+\bibitem{PlautiiDiseases}
+Liu RT, Rowan-Nash AD, Sheehan AE, Walsh RFL, Sanzari CM, Korry BJ, Belenky P. \emph{Reductions in anti-inflammatory gut bacteria are associated with depression in a sample of young adults.} Brain Behav Immun. 2020 Aug;88:308-324.\\doi: 10.1016/j.bbi.2020.03.026. Epub 2020 Mar 27. 
+
+\bibitem{PlautiiBlood}
+Costescu Strachinaru, Diana Isabela et al. \emph{A case of Flavonifractor plautii blood stream infection in a severe burn patient and a review of the literature.} Acta clinica Belgica vol. 77,3 (2022): 693-697.\\doi:10.1080/17843286.2021.1944584
 
 \end{thebibliography}
 
