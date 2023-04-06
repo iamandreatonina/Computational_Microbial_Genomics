@@ -41,6 +41,10 @@
 
 \chapter{Introduction}
 
+\section{Motivation}
+The main goal of this report is to present the general workflow that is used when performing a metagenome analysis. Specifically, here we present the study of the uSGB15132 that was identified thanks a previous mapping of the human microbiome \cite{SGB2}.
+This report contains the main findigs on the uSGB15132 that were obtained thanks to a process of genome annotation, followed by pangenome and phylogenetic analysis, followed by taxonomic characterization to identify the specific strain encoded in the genomes of the MAGs.
+
 
 
 \section{Metagenome Sequencing, Assembly, and Binning}
@@ -58,8 +62,8 @@ After the process of assembly is completed, contigs are grouped by their organis
 
 With the term pangenome, we indicate the union of the \textit{core genome}, containing genes present in all strains, and the \textit{dispensable genome}, also called \textit{accessory genome}, containing genes present in two or more strains and genes unique to single strains \cite{Medini}.
 
+Finally, thanks to phylogenetic analysis and taxonomic characterization it is possible to contestualize microbial genomes and determine their genetic and phenotype relationships \cite{Phylo}.
 
-DA SPIEGARE IL PANGENOME ANAYSIS E LE ALTRE ANALISI CHE FACCIAMO??
 
 
 
@@ -190,7 +194,7 @@ The accessory genes are also divided into genes present in only one strain (clou
 \end{figure}
 
 
-Looking at the Figures \ref{fig:pangenome3} and  \ref{fig:pangenome4} we can obtain/derive an idea on the pangenome, specifically if it is open or closed. It is important to remember that these results were obtained using only 31 metagenomes, making the process of discussion more complex. Even though, looking at the Conserved vs Total genes plot in Figure \ref{fig:pangenome3}, we can argue that the total genes initial slope is very high but at the end, when almost all the genomes were added, the slope start to decrease. The conserved gene line is almost stationary, with litte changes when the genomes are all added. Only looking at this graph it is difficult to define if the pangenome is open or closed, therefore, the observation of the Unique vs New genes plot can be useful. Looking at the Figure \ref{fig:pangenome4}, we can see that, adding new genomes doesn't give new information, the number of new genes is almost at zero when we add the last genome. This help us to state with a good security that the pangenome is closed.
+Looking at the Figures \ref{fig:pangenome3} and  \ref{fig:pangenome4} we can derive an idea on the pangenome, specifically if it is open or closed. It is important to remember that these results were obtained using only 31 metagenomes, making the process of discussion more complex. Looking at the Conserved vs Total genes plot in Figure \ref{fig:pangenome3} the total genes initial slope is very high and only when almost all the genomes are added, the slope start to decrease The conserved gene line is almost stationary, with little changes when the genomes are all added. Taking in consideration only this graph will be leading us to think that the pangenome is open, therefore, the observation of the Unique vs New genes plot can be useful. Looking at the Figure \ref{fig:pangenome4}, we can see that, adding new genomes doesn't give new information, the number of new genes is almost at zero when we add the last genome. This help us to state with a good security that the pangenome is closed.
 
 
 \begin{figure}[ht]
@@ -207,7 +211,31 @@ Looking at the Figures \ref{fig:pangenome3} and  \ref{fig:pangenome4} we can obt
 \label{fig:pangenome4}
 \end{figure}
 
-\section{Phylogenetic analysis and association with host data}
+\section{Phylogenetic analysis }
+The phylogenetic analysis enabled us to obtain phylogenetic trees both form the presence and absence of the accessory genes and the alignment of the core genes.
+The Figure \ref{fig:Tree1} represent the tree obtained using the accessory genome data, while the Figure \ref{fig:Tree2} represent the tree obtained using the accessory genome data.\\Each branch is associated to a confidence level of the branch from 0 to 1, obtained by the metadata. We also divided the branches based on the country and the diseases as shown in the legends.
+\\Operating a comparison between the two we can see that in both trees we have a enanched division based on the countries (westernized and non westernized), with a stronger clustering in the Tree \ref{fig:Tree1}, since the tree is obtained using the data of the accessory genome therefore a more specific clustering could be observed because a relation with the westernalization, diet and culture differences.
+\\Regarding the disease information, we think the the Tree \ref{fig:Tree2} is better explaining the clustering focusing on the diseases. We can specifically see that there is a branching point after which the non-healty samples are grouped almost all togheter. We hypotize that this difference could be related to DNA mutation that were acquired after the activation of pathogenic pathways.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.4]{tree\_plots/alignment\_tree.png}
+\caption{Tree from accessory genome information}
+\label{fig:Tree1}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.5]{tree\_plots/alignment\_tree\_ft.png}
+\caption{Tree from core genome alignment.}
+\label{fig:Tree2}
+\end{figure}
+
+
+
+
+\section{Taxonomic association}
 PhyloPhlAn enable us to operate a phylogenetic analysis. The main output correspond to a list of the closest SGBs sorted by their increasing average sequence distance (Mash distance) in a tab-separated file \cite{PhyloGuide}. The information of each SGB contains specific columns:
 \\
 \\ \code{my\_bin}: is the input bin name
@@ -218,27 +246,30 @@ PhyloPhlAn enable us to operate a phylogenetic analysis. The main output corresp
 \\
 \newline
 \\In our case, for each MAG we get the same taxa\_level, the species Flavonifractor plautii, a strictly anaerobic rod shaped bacterium. It is a commensal of the human intestinal microbiota which is  usually difficult to isolate from samples \cite{Plauti}.
+\\Thanks to further invastigation on this bacteria it was found that this strain was recently obtained via the unification of two previuosly distinct species, specifically, Clostridium orbiscindens and Eubacterium plautii \cite{Unification}.
+\\It is known from literature that this species is correleated with hip joint infection \cite{HipJoint}, chronic kidney disease, varoisu autoimmune disorders and epithelial invasive potential \cite{PlautiiDiseases}. Finally, this strain was associated with blood infections in immunosuppressed patients\cite{PlautiiBlood}.
+\\We think that this foundings are to keep in consideration for further analysis on this strain, since the 33\% of our samples were obtained from patients with correlated diseases like rheumatoid arthritis (a kind hip joint infection) and hypertension.
 
-DA DIRE ALTRO?
 
 
 \chapter{Conclusion}
 Thanks to this project it was possible to obtain an insight on the metagenome workflow and the main analysis that are neeed when dealing with unkown genomes.
 We initially investigated the uSGB we were given computing general statistics on the quality and the associated metadata.
 We then performed a process of gene annotation and retrived informations about the number of coding sequences and hypotetical proteins in these CDS (Figure \ref{fig:CDS}).
-We than were able to perform a pangenome analysis and hypotize that the pangenome of our uSGB is closed as the addition of new genomes gives us little to no information as shown in the Figure \ref{fig:pangenome4}. Also, it was possible to identify the genes shared by at least ??TO CHECK?? 90\% of our MAGs, the core genome. These correspons to $\sim$ 15\% of the total gene.
-From the taxonomix assigment of the uSGB it was possible to identify the \textit{Oscillospiraceae} family and specifically the \textit{Flavonifractor plautii} species.
-Thanks to further invastigation on this bacteria it was found that this strain was recently obtained/created via the unification of two previuosly distinct species, specifically, Clostridium orbiscindens and Eubacterium plautii \cite{Unification}.
-\\
-\newline
-\\It is known from literature that this species is correleated with hip joint infection \cite{HipJoint}, chronic kidney disease, varoisu autoimmune disorders and epithelial invasive potential \cite{PlautiiDiseases}. Finally, this strain was associated with blood infections in immunosuppressed patients\cite{PlautiiBlood}.
-\\We think that this foundings are to keep in consideration for further analysis on this strain, since the 33\% of our samples were obtained from patients with correlated diseases like rheumatoid arthritis (a kind hip joint infection) and hypertension.
-
+We than were able to perform a pangenome analysis and hypotize that the pangenome of our uSGB is closed as the addition of new genomes gives us little to no information as shown in the Figure \ref{fig:pangenome4}. Also, it was possible to identify the genes shared by at least 90\% of our MAGs, the core genome. These correspons to $\sim$ 15\% of the total gene.
+After the tree obtained with a phylogenetic analysis (\ref{fig:Tree1}, \ref{fig:Tree2}) we hypotized that the obtained tree could be useful to investigate the custering based on the country of origin of the sample and the presence of absence of specific diseases.
+From the taxonomix assigment of the uSGB it was possible to identify the \textit{Oscillospiraceae} family and specifically the \textit{Flavonifractor plautii} species, correlated with variuos diseases and infections \cite{HipJoint,PlautiiDiseases, PlautiiBlood} that could correlated with the one observed in our samples. More specific analysis should be effectuated to better analyze the clustering of the non-healty and healty samples and the role of westernization and diet.
+\vfill
+Link to the github page with the project: \textit{https://github.com/iamandreatonina/Microbiomal\_Genomics\_Segata}
 
 
 
 
 \begin{thebibliography}{}
+
+\bibitem{SGB2}
+Pasolli E, Asnicar F, Manara S, Zolfo M, Karcher N, Armanini F, Beghini F, Manghi P, Tett A, Ghensi P, Collado MC, Rice BL, DuLong C, Morgan XC, Golden CD, Quince C, Huttenhower C, Segata N. \emph{Extensive Unexplored Human Microbiome Diversity Revealed by Over 150,000 Genomes from Metagenomes Spanning Age, Geography, and Lifestyle.} Cell. 2019 Jan 24;176(3):649-662.e20. \\doi: 10.1016/j.cell.2019.01.001.
+
 \bibitem{MAG}
 Yang, Chao et al. \emph{A review of computational tools for generating metagenome-assembled genomes from metagenomic sequencing data,} Computational and structural biotechnology journal vol. 19 6301-6314. 23 Nov. 2021, \\doi:10.1016/j.csbj.2021.11.028
 
@@ -262,8 +293,6 @@ Nissen, J.N., Johansen, J., Allesøe, R.L. et al. \emph{Improved metagenome binn
 Chao Yang, Debajyoti Chowdhury, Zhenmiao Zhang, William K. Cheung, Aiping Lu, Zhaoxiang Bian, Lu Zhang,
 \emph{A review of computational tools for generating metagenome-assembled genomes from metagenomic sequencing data,} Computational and Structural Biotechnology Journal, Volume 19, 2021, Pages 6301-6314, ISSN 2001-0370, \\https://doi.org/10.1016/j.csbj.2021.11.028.
 
-\bibitem{SGB2}
-Pasolli E, Asnicar F, Manara S, Zolfo M, Karcher N, Armanini F, Beghini F, Manghi P, Tett A, Ghensi P, Collado MC, Rice BL, DuLong C, Morgan XC, Golden CD, Quince C, Huttenhower C, Segata N. \emph{Extensive Unexplored Human Microbiome Diversity Revealed by Over 150,000 Genomes from Metagenomes Spanning Age, Geography, and Lifestyle.} Cell. 2019 Jan 24;176(3):649-662.e20. \\doi: 10.1016/j.cell.2019.01.001.
 
 \bibitem{SGB}
 Blanco-Míguez, A., Beghini, F., Cumbo, F. et al. \emph{Extending and improving metagenomic taxonomic profiling with uncharacterized species using MetaPhlAn 4.} Nat Biotechnol (2023). \\https://doi.org/10.1038/s41587-023-01688-w
@@ -271,6 +300,11 @@ Blanco-Míguez, A., Beghini, F., Cumbo, F. et al. \emph{Extending and improving 
 
 \bibitem{Medini}
 Medini, Duccio et al. \emph{The microbial pan-genome.} Current opinion in genetics and development vol. 15,6 (2005): 589-94. \\doi:10.1016/j.gde.2005.09.006
+
+
+\bibitem{Phylo}
+Asnicar, F., Thomas, A.M., Beghini, F. et al.
+\emph{Precise phylogenetic analysis of microbial isolates and genomes from metagenomes using PhyloPhlAn 3.0.} Nat Commun 11, 2500 (2020).\\ https://doi.org/10.1038/s41467-020-16366-7
 
 \bibitem{Prokka}
 Torsten Seemann,\emph{Prokka: rapid prokaryotic genome annotation,} Bioinformatics, Volume 30, Issue 14, July 2014, Pages 2068–2069,\\ https://doi.org/10.1093/bioinformatics/btu153
@@ -294,10 +328,6 @@ Morgan N. Price, Paramvir S. Dehal, Adam P. Arkin, \emph{FastTree: Computing Lar
 \bibitem{FTMP}
 Price MN, Dehal PS, Arkin AP, \emph{FastTree 2–approximately maximum-likelihood trees for large alignments}. PLoS One. 2010, 5\\doi: e9490-10.1371/journal.pone.0009490.
 
-
-\bibitem{Phylo}
-Asnicar, F., Thomas, A.M., Beghini, F. et al.
-\emph{Precise phylogenetic analysis of microbial isolates and genomes from metagenomes using PhyloPhlAn 3.0.} Nat Commun 11, 2500 (2020).\\ https://doi.org/10.1038/s41467-020-16366-7
 
 \bibitem{PhyloGuide}
 \emph{https://github.com/biobakery/phylophlan/wiki}
