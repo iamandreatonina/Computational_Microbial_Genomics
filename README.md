@@ -12,25 +12,17 @@ LINKS:
 
 ---
 
-## Things to do 
-- [ ] Check the introduction and write the info about our SGB -> also if possible at the assosciated papers
-- [ ] Methods to read and add code step by step and explenation of the paramiters 
-- [ ] Results
-- [X] Presentation   
-
----
-
 ## Review 
-- [ ] Abstract
-- [ ] Introduction
-- [ ] Methods
-- [ ] Results and Discussion 
-- [ ] Conclusions
-- [ ] Referencces 
+- [X] Introduction
+- [X] Methods
+- [X] Results and Discussion 
+- [X] Conclusions
+- [X] Referencces 
 
 ---
 
 ## Presentation 
+- [X] [Set presentation slides](https://github.com/iamandreatonina/Microbiomal_Genomics_Segata/tree/main/Presentation)
 
 ---
 ## Lectures code update
