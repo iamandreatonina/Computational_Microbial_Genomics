@@ -71,12 +71,12 @@ Eventually, thanks to phylogenetic analysis and taxonomic characterization it is
 \section{Softwares and parameters used}
 \subsection{Genome annotation (Prokka)}
 
-Prokka is a fast and accurate command line software tool used to annotate prokaryoyic genomes.  It produces standards-compliant output files that can be used for further analysis or viewing in genome browsers.
+Prokka is a fast and accurate command line software tool used to annotate prokaryoyic genomes.  It produces standards-compliant output files that can be used for further analysis or viewing using genome browsers.
 
 Prokka expect one single input file in a FASTA format, containing an assembled genome. The process of annotation is possible thanks to the comparison of the gene codes with a large database of known sequences, identifying the best match as the most significative one and therefore associating the labelling and the relevant features to the gene codes. Prokka use this method in an hieratical manner, using initially small and reliable databases moving only at the end of the process to protein family databases.
 Prokka produces several outputs file, listed in the Figure \ref{fig:prokka-output}  \cite{Prokka}.
 
-We need to specify several parameters, specifically, the input files, our MAGs, the output directory \code{--outdir} and the parameter \code{--kingdom Bacteria} that is needed to specify the annotation mode, to make the prokka more fast.
+We need to specify several parameters, specifically, the input files, our MAGs; the output directory \code{--outdir} and the parameter \code{--kingdom Bacteria} that is needed to specify the annotation mode, to make the annotation more fast.
 \\ \newline \\
 \code{prokka --kingdom Bacteria --outdir SGB15132\_prokka\_output .f*}.
 
@@ -97,18 +97,18 @@ The input file to Roary is a GFF file containing sequences features.
 
 Roary collects the coding regions from the annotated input genome. It operates a clustering process creating a network and defining a phylogenetic tree. A matrix is therefore obtained and the pangenome (core genes and accessory genes) is defined.  The process of clustering is based on the minimum percentage of identity, setted to 95\% by default \cite{Roary}.
 
-The main output of Roary is a tree obtained using the presence and absence of the accessory genes. It is a tree used to have an initial insight of the data, grouping in a quick way the genomes based on their accessory genes \cite{Roary}. It can be visualized using iTOL, an online tool for phylogenetic tree display \cite{iTOL}.
+The main output of Roary is a tree obtained using the presence and absence of the accessory genes. It is a tree used to have an initial insight of the data, grouping in a quick way the genomes based on their accessory genes \cite{Roary}.The tree can be visualized using iTOL, an online tool for phylogenetic tree display \cite{iTOL}.
 
-Roary returns three graphs, the newick tree associated to the pangenome table, a pie chart of the breakdown of genes and the number of isolate they are present in, a graph with the frequency of genes versus the number of genomes. \cite{Roary-outputs}
+Roary returns three graphs, the newick tree associated to the pangenome table (a matrix of core and accessory genes), a pie chart of the breakdown of genes and the number of isolate they are present in, a graph with the frequency of genes versus the number of genomes. \cite{Roary-outputs}
 
 
-There are some main parameters that need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the , \code{-i} parameter, specifing the percentage identity of blastp, here used at 95\%; the , \code{-cd} parameter, percentage of isolates a gene must be in to be considered part of the core genome, here setted at 90\%.
+There are some main parameters that need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the \code{-i} parameter, specifing the percentage identity of blastp, here used at 95\%; the \code{-cd} parameter, percentage of isolates a gene must be in to be considered part of the core genome, here setted at 90\%.
 \\ \newline \\ \code{roary .gff -i 95 -cd 90} \\ \newline \\
 
 
 With Roary it is also possible to perform a core gene alignment to generate a more reliable tree. A core-genome alignment is more scalable with respect to the whole-genome alignment. It is an alignment useful to identify the core genes conserved in all aligned genomes and that can be very useful to infer the phylogeny \cite{Core-align}.
 
-The main parameters sto be specified are the \code{-e} parameter,needed to perform a core gene alignment; the \code{-n} parameter, to use mafft as the tool for the multiple sequence alignmet, making the process faster and finally the parameter \code{-p}, needed to specify the number of threads, increasing therefore the speed \cite{Roary}.
+The main parameters to be specified are the \code{-e} parameter, needed to perform a core gene alignment; the \code{-n} parameter, to use mafft as the tool for the multiple sequence alignmet, making the process faster; and finally, the parameter \code{-p}, needed to specify the number of threads, increasing therefore the speed \cite{Roary}.
 \\
 \newline
 \\
@@ -118,14 +118,14 @@ The main parameters sto be specified are the \code{-e} parameter,needed to perfo
 \\
 The core gene aligment can be used to construct a phylogenetic tree. This is possible using FastTree, a tool for constructing large phylogenies, estimating their reliability. FastTree exploit Neighbor-Joining and nearest neighbor interchanges to create a phylogentic tree. \cite{FastTree}
 Specifically, we used FastTreeMP, that allow the parallelization of the steps needed in computing a tree \cite{FTMP}.
-The tree is obtained using the following code,\\ \newline \\ \code{FastTreeMP -gtr -nt -out core\_gene.tre core\_gene\_alignment.aln},\\ \newline \\ in which the parameter \code{-gtr} express the generalized time-reversible model (to be used with nucleotide alignments only) while the parameter \code{-nt} is used to specify that the alignment is performed on nucleotides.
+The tree is obtained using the following code,\\ \newline \\ \code{FastTreeMP -gtr -nt -out core\_gene.tre core\_gene\_alignment.aln}\\ \newline \\ in which the parameter \code{-gtr} express the generalized time-reversible model (to be used with nucleotide alignments only) while the parameter \code{-nt} is used to specify that the alignment is performed on nucleotides.
 
 
 
 
 \subsection{Taxonomic assignment (PhyloPhlAn 3.0)}
 
-PhyloPhlAn 3.0 is an accurate and rapid tool to perform microbial genome characterization and phylogenetic analysis both of newly assembled microbial genomes and metagenomes. PhyloPhlAn 3.0 can integrate public genome resources/information to the genomes in input and is also accurate at the strain and species level and allow the assign to each bin obtained via metagenomic assembly its closest species-level genome bins \cite{Phylo}.
+PhyloPhlAn 3.0 is an accurate and rapid tool to perform microbial genome characterization and phylogenetic analysis both of newly assembled microbial genomes and metagenomes. PhyloPhlAn 3.0 can integrate public genome information to the genomes in input and is also accurate at the strain and species level. It allow the assignation of the closest species-level genome to each of the bin obtained via metagenomic assembly \cite{Phylo}.
 There are some main parameters needed to be specified, mainly, the input folder with the \code{-i} parameter; the output folder, with the parameter \code{-o}; the \code{--nproc} parameter, used to specify the CPUs that can be used; the \code{-n} parameter that allow us to decide  how many SGBs (sorted by increasing average genomic distance) will be reported for each input bin in the output file; the \code{--database\_update} parameter to update the databases file, the \code{-d} parameter to specify the name of the output database adn finally, the \code{--verbose} parameter to print to the bash \cite{PhyloGuide}.
 The final command is the following:\\ \newline \\ \code{phylophlan\_metagenomic -i phylo -o phylo\_out --nproc 4 -n 1 --database\_update -d CMG2324 --verbose}
 
