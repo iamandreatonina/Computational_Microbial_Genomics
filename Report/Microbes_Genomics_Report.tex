@@ -44,38 +44,38 @@
 
 \section{Motivation}
 The main goal of this report is to present the general workflow that can be used when performing a metagenome analysis. Specifically, here we present the investigation of the uSGB15132 that was identified thanks to a previous study of the human microbiome \cite{SGB2}.
-This report contains the main findigs on the uSGB15132 that were obtained thanks to a process of genome annotation, followed by pangenome and phylogenetic analysis, succeeded by taxonomic characterization to identify the specific strain encoded in the genomes of the MAGs.
+This report contains the main findings on the uSGB15132 that were obtained thanks to a process of genome annotation, followed by pangenome and phylogenetic analysis, succeeded by taxonomic characterization to identify the specific strain encoded in the genomes of the MAGs.
 
 
 
 \section{Metagenome Sequencing, Assembly, and Binning}
-Metagenome sequencing enables the construction of metagenomes-assembled genomes (MAGs). A MAG can be seen as a microbial genome obtained by a preliminary passage of genome assembly of high quality contigs. This kind of analysis enables us to identify novel species thanks to a passage of annotation and taxonomic classification \cite{MAG}.
+Metagenome sequencing enables the construction of metagenomes-assembled genomes (MAGs). A MAG can be seen as a microbial genome obtained by a preliminary passage of genome assembly of high-quality contigs. This kind of analysis enables us to identify novel species thanks to a passage of annotation and taxonomic classification \cite{MAG}.
 
-A typical shotgun metagenomic process involves a specific pipeline, a step of sample acquisation and sequencing, a step of assembly or mapping and finally a step of binning followed by genome-annotation. This whole process is than completed with further, more complete analysis \cite{Metagenome}.
+A typical shotgun metagenomic process involves a specific pipeline, a step of sample acquisition and sequencing, a step of assembly or mapping, and finally a step of binning followed by genome annotation. This whole process is then completed with further, more complete analysis \cite{Metagenome}.
 
 
 
-The selection of high quality bins enables the identification of MAGs, characterized by a high completness and low levels of contamination, therefore, they can be used to operate taxonomic annotation and gene prediction \cite{MAG2}. These can be grouped together in the same species genome bin (SGB) if they exceed a certain threshold of nucleotide identity, fixed at 95\% \cite{SGB2, SGB}.
+The selection of high-quality bins enables the identification of MAGs, characterized by a high completeness and low levels of contamination, therefore, they can be used to operate taxonomic annotation and gene prediction \cite{MAG2}. These can be grouped together in the same species genome bin (SGB) if they exceed a certain threshold of nucleotide identity, fixed at 95\% \cite{SGB2, SGB}.
 
 
 
 With the term pangenome, we indicate the union of the \textit{core genome}, containing genes present in all strains, and the \textit{dispensable genome}, also called \textit{accessory genome}, containing genes present in two or more strains and genes unique to single strains \cite{Medini}.
 
-Eventually, thanks to phylogenetic analysis and taxonomic characterization it is possible to contestualize microbial genomes and determine their genetic and phenotype relationships \cite{Phylo}.
+Eventually, thanks to phylogenetic analysis and taxonomic characterization it is possible to contextualize microbial genomes and determine their genetic and phenotype relationships \cite{Phylo}.
 
 
 
 
 \chapter{Methods}
-\section{Softwares and parameters used}
+\section{Software and parameters used}
 \subsection{Genome annotation (Prokka)}
 
-Prokka is a fast and accurate command line software tool used to annotate prokaryoyic genomes.  It produces standardized output files that can be used for further analysis or viewing using genome browsers.
+Prokka is a fast and accurate command line software tool used to annotate prokaryotic genomes.  It produces standardized output files that can be used for further analysis or viewing using genome browsers.
 
-Prokka expect one single input file in a FASTA format, containing an assembled genome. The process of annotation is possible thanks to the comparison of the gene codes with a large database of known sequences, identifying the best match as the most significative one and therefore associating the labelling and the relevant features to the gene codes. Prokka use this method in an hierarchical manner, using initially small and reliable databases moving only at the end of the process to protein family databases.
-Prokka produces several outputs file, listed in the Figure \ref{fig:prokka-output}  \cite{Prokka}.
+Prokka expects one single input file in a FASTA format, containing an assembled genome. The process of annotation is possible thanks to the comparison of the gene codes with a large database of known sequences, identifying the best match as the most significative one and therefore associating the labeling and the relevant features to the gene codes. Prokka uses this method in a hierarchical manner, using initially small and reliable databases moving only at the end of the process to protein family databases.
+Prokka produces several outputs file, listed in Figure \ref{fig:prokka-output}  \cite{Prokka}.
 
-We need to specify several parameters, specifically, the input files, our MAGs; the output directory \code{--outdir} and the parameter \code{--kingdom Bacteria} that is needed to specify the annotation mode, to make the annotation more fast.
+We need to specify several parameters, specifically, the input files, our MAGs; the output directory \code{--outdir}, and the parameter \code{--kingdom Bacteria} that is needed to specify the annotation mode, to make the annotation faster.
 \\ \newline \\
 \code{prokka --kingdom Bacteria --outdir SGB15132\_prokka\_output .f*}.
 
@@ -94,20 +94,20 @@ Roary is a tool that enables the construction of large-scale prokaryotic pangeno
 
 The input file to Roary is a GFF file containing sequences features. 
 
-Roary collects the coding regions from the annotated input genome. It operates a clustering process creating a network and defining a phylogenetic tree. A matrix is therefore obtained and the pangenome (core genes and accessory genes) is defined.  The process of clustering is based on the minimum percentage of identity, setted to 95\% by default \cite{Roary}.
+Roary collects the coding regions from the annotated input genome. It operates a clustering process creating a network and defining a phylogenetic tree. A matrix is therefore obtained and the pangenome (core genes and accessory genes) is defined.  The process of clustering is based on the minimum percentage of identity, set to 95\% by default \cite{Roary}.
 
-The main output of Roary is a tree obtained using the presence and absence of the accessory genes. It is a tree used to have an initial insight of the data, grouping in a quick way the genomes based on their accessory genes \cite{Roary}. The tree can be visualized using iTOL, an online tool for phylogenetic tree display \cite{iTOL}.
+The main output of Roary is a tree obtained using the presence and absence of the accessory genes. It is a tree used to have an initial insight into the data, grouping in a quick way the genomes based on their accessory genes \cite{Roary}. The tree can be visualized using iTOL, an online tool for phylogenetic tree display \cite{iTOL}.
 
-Roary returns three graphs, the newick tree associated to the pangenome table (a matrix of core and accessory genes), a pie chart of the breakdown of genes and the number of isolate genomes are present in, a graph with the frequency of genes versus the number of genomes. \cite{Roary-outputs}
+Roary returns three graphs, the Newick tree associated with the pangenome table (a matrix of core and accessory genes), a pie chart of the breakdown of genes and the number of isolate genomes present, a graph with the frequency of genes versus the number of genomes. \cite{Roary-outputs}
 
 
-There are some main parameters that need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the \code{-i} parameter, specifing the percentage identity used by blastp, here used at 95\%; the \code{-cd} parameter, percentage of isolates that a gene must be in to be considered part of the core genome, here setted at 90\%.
+Some main parameters need to be specified to roary, specifically, the input \code{.gff} files; the output directory \code{-f roary\_out}; the \code{-i} parameter, specifying the percentage identity used by blastp, here used at 95\%; the \code{-cd} parameter, the percentage of isolates that a gene must be in to be considered part of the core genome, here set at 90\%.
 \\ \newline \\ \code{roary .gff -i 95 -cd 90} \\ \newline \\
 
 
-With Roary it is also possible to perform a core gene alignment to generate a more reliable tree. A core-genome alignment is more scalable, respect to a whole-genome alignment, is useful to identify the core genes conserved in all genomes and can be used to infer the phylogeny \cite{Core-align}.
+With Roary it is also possible to perform a core gene alignment to generate a more reliable tree. A core-genome alignment is more scalable, with respect to a whole-genome alignment, is useful to identify the core genes conserved in all genomes, and can be used to infer the phylogeny \cite{Core-align}.
 
-The main parameters to be specified are the \code{-e} parameter, needed to perform a core gene alignment; the \code{-n} parameter, to use MAFFT as the tool for the multiple sequence alignmet, making the process faster; and finally, the parameter \code{-p}, needed to specify the number of threads, increasing therefore the speed \cite{Roary}.
+The main parameters to be specified are the \code{-e} parameter, needed to perform a core gene alignment; the \code{-n} parameter, to use MAFFT as the tool for the multiple sequence alignment, making the process faster; and finally, the parameter \code{-p}, needed to specify the number of threads, increasing, therefore, the speed \cite{Roary}.
 \\
 \newline
 \\
@@ -115,27 +115,27 @@ The main parameters to be specified are the \code{-e} parameter, needed to perfo
 \\
 \newline
 \\
-The core gene aligment can be used to construct a phylogenetic tree. This is possible using FastTree, a tool for constructing large phylogenies, estimating their reliability. FastTree exploit Neighbor-Joining and nearest neighbor interchanges to create a phylogentic tree \cite{FastTree}.
-Specifically, we used FastTreeMP, that allow the parallelization of the steps needed in computing a tree \cite{FTMP}.
-The tree is obtained using the following code,\\ \newline \\ \code{FastTreeMP -gtr -nt -out core\_gene.tre core\_gene\_alignment.aln}\\ \newline \\ in which the parameter \code{-gtr} express the generalized time-reversible model (to be used with nucleotide alignments only) while the parameter \code{-nt} is used to specify that the alignment is performed on nucleotides.
+The core gene alignment can be used to construct a phylogenetic tree. This is possible using FastTree, a tool for constructing large phylogenies and estimating their reliability. FastTree exploits Neighbor-Joining and nearest-neighbor interchanges to create a phylogenetic tree \cite{FastTree}.
+Specifically, we used FastTreeMP, which allow the parallelization of the steps needed in computing a tree \cite{FTMP}.
+The tree is obtained using the following code,\\ \newline \\ \code{FastTreeMP -gtr -nt -out core\_gene.tre core\_gene\_alignment.aln}\\ \newline \\ in which the parameter \code{-gtr} expresses the generalized time-reversible model (to be used with nucleotide alignments only) while the parameter \code{-nt} is used to specify that the alignment is performed on nucleotides.
 
 
 
 
 \subsection{Taxonomic assignment (PhyloPhlAn 3.0)}
 
-PhyloPhlAn 3.0 is an accurate and rapid tool to perform microbial genome characterization and phylogenetic analysis of metagenomes. PhyloPhlAn 3.0 can integrate public genome information to the genomes in input with a taxonomic resolution at the species and strain level. It allow the assignation of the closest species-level genome to each of the bin obtained via metagenomic assembly \cite{Phylo}.
-There are some main parameters needed to be specified, mainly, the input folder with the \code{-i} parameter; the output folder, with the parameter \code{-o}; the \code{--nproc} parameter, used to specify the CPUs that can be used; the \code{-n} parameter that allow us to decide  how many SGBs (sorted by increasing average genomic distance) will be reported for each input bin in the output file; the \code{--database\_update} parameter to update the databases file, the \code{-d} parameter to specify the name of the database of markers to use and finally, the \code{--verbose} parameter to print to the bash \cite{PhyloGuide}.
+PhyloPhlAn 3.0 is an accurate and rapid tool to perform microbial genome characterization and phylogenetic analysis of metagenomes. PhyloPhlAn 3.0 can integrate public genome information into the genomes in input with a taxonomic resolution at the species and strain level. It allows the assignation of the closest species-level genome to each of the bins obtained via metagenomic assembly \cite{Phylo}.
+There are some main parameters needed to be specified, mainly, the input folder with the \code{-i} parameter; the output folder, with the parameter \code{-o}; the \code{--nproc} parameter, used to specify the CPUs that can be used; the \code{-n} parameter that allows us to decide  how many SGBs (sorted by increasing average genomic distance) will be reported for each input bin in the output file; the \code{--database\_update} parameter to update the databases file, the \code{-d} parameter to specify the name of the database of markers to use and finally, the \code{--verbose} parameter to print to the bash \cite{PhyloGuide}.
 The final command is the following:\\ \newline \\ \code{phylophlan\_metagenomic -i phylo -o phylo\_out --nproc 4 -n 1 --database\_update -d CMG2324 --verbose}
 
-\chapter{Results and discussion}
+\chapter{Results and Discussion}
 
 \section{uSGB 15132}
 
-We were provided with a set of 31 high-quality prebinned metagenomes grouped in the same uSGB labelled SGB15132.
+We were provided with a set of 31 high-quality pre-binned metagenomes grouped in the same uSGB labeled SGB15132.
 
-As shown in the Figure \ref{fig:compl} the bins have a completeness higher that 97.3 and the maximum redundacy registered is equal to 2.25.
-The MAGs were associated to a study condition, as shown in the Figure \ref{fig:studyCondition}, we used this information to interpret the analyisis that were effectuated later on.
+As shown in Figure \ref{fig:compl} the bins have a completeness higher than 97.3\% and the maximum redundancy registered is equal to 2.25.
+The MAGs were associated with a study condition, as shown in Figure \ref{fig:studyCondition}, we used this information to interpret the analysis that was effectuated later on.
 
 \begin{figure}[ht]
 \centering
@@ -153,7 +153,7 @@ The MAGs were associated to a study condition, as shown in the Figure \ref{fig:s
 \end{figure}
 
 \section{Genome annotation}
-After the genome annotation process, possible using prokka, we were able to identify that, the number of the CDS (protein coding sequence) is slightly variable, spanning from a minimun value of 2651 to a maximum of 3935. For each MAG, as shown in the Figure \ref{fig:CDS} more or less a half of the CDS are known proteins, while the other half is represented by RNA or hypotetical proteins.
+After the genome annotation process, by using prokka, we were able to identify that, the number of the CDS (protein coding sequence) is slightly variable, spanning from a minimum value of 2651 to a maximum of 3935. For each MAG, as shown in Figure \ref{fig:CDS} more or less half of the CDS are known proteins, while the other half is represented by RNA or hypothetical proteins.
 
 
 \begin{figure}[ht]
@@ -167,8 +167,8 @@ After the genome annotation process, possible using prokka, we were able to iden
 
 
 
-Each SGB strain was found to contain an average of 1317 genes that are present in every strain (core genome), plus 8407 genes that are absent in more than one strains (strain $<$ 31) (accessory genome). This can be seen in the Figure \ref{fig:pangenome2}, showing the frequency plot of the genes per genome, this plot gives a general overview of the frequency of genes within a whole genome set, typically these plots have an U shape and most genes can be detected in a single genome or in all genomes \cite{Analysis-roary}. Here it is shown that the number of genes present in all the genomes correspond to the number of core genes.
-The accessory genes are also divided into genes present in less than 4 strains (cloud genome) or genes present in 4 or more strains but not all strains (shell genome) \cite{Medini}. The figure \ref{fig:pangenome5} show the subparts constituting the pangenome, associated with the total number of genes while the Figure \ref{fig:pangenome1} show the tree obtained via the analysis associated to a heatmap in which we can easily define the core genes that are present in all the genomes. It is important to remember that the tree is not obtained with a complete clustering methodology.
+Each SGB strain was found to contain an average of 1317 genes that are present in every strain (core genome), plus 8407 genes that are absent in more than one strain (strain $<$ 31) (accessory genome). This can be seen in Figure \ref{fig:pangenome2}, showing the frequency plot of the genes per genome, this plot gives a general overview of the frequency of genes within a whole genome set, typically these plots have a U shape and most genes can be detected in a single genome or in all genomes \cite{Analysis-roary}. Here it is shown that the number of genes present in all the genomes corresponds to the number of core genes.
+The accessory genes are also divided into genes present in less than 4 strains (cloud genome) or genes present in 4 or more strains but not all strains (shell genome) \cite{Medini}. Figure \ref{fig:pangenome5} shows the subparts constituting the pangenome, associated with the total number of genes while Figure \ref{fig:pangenome1} shows the tree obtained via the analysis associated with a heatmap in which we can easily define the core genes that are present in all the genomes. It is important to remember that the tree is not obtained with a complete clustering methodology.
 
 
 \begin{figure}[ht]
@@ -193,7 +193,7 @@ The accessory genes are also divided into genes present in less than 4 strains (
 \end{figure}
 
 
-Looking at the Figures \ref{fig:pangenome3} and  \ref{fig:pangenome4} we can derive an idea on the pangenome, specifically if it is open or closed. It is important to remember that these results were obtained using only 31 metagenomes, making the process of discussion more complex. Looking at the Conserved vs Total genes plot in Figure \ref{fig:pangenome3} the total genes initial slope is very sharp and only when almost all the genomes are added, the slope start to decrease. The conserved gene line is almost stationary, with little changes when the genomes are all added. Taking in consideration only this graph will be leading us to think that the pangenome is open, therefore, the observation of the Unique vs New genes plot can be useful to support this hypotesis or not. Looking at the Figure \ref{fig:pangenome4}, we can see that, adding new genomes doesn't give new information, indeed the number of new genes is almost at zero when we add the last genome. This help us to assume that the pangenome is possibly closed but we need more genomes to have a better characterization.
+Looking at Figures \ref{fig:pangenome3} and  \ref{fig:pangenome4} we can derive an idea of the pangenome, specifically if it is open or closed. It is important to remember that these results were obtained using only 31 metagenomes, making the process of discussion more complex. Looking at the Conserved vs Total genes plot in Figure \ref{fig:pangenome3} the total genes initial slope is very sharp and only when almost all the genomes are added, the slope start to decrease. The conserved gene line is almost stationary, with little changes when the genomes are all added. Taking into consideration only this graph will be leading us to think that the pangenome is open, therefore, the observation of the Unique vs New genes plot can be useful to support this hypothesis or not. Looking at Figure \ref{fig:pangenome4}, we can see that, adding new genomes doesn't give new information, indeed the number of new genes is almost at zero when we add the last genome. This helps us to assume that the pangenome is possibly closed but we need more genomes to have a better characterization.
 
 
 \begin{figure}[ht]
@@ -211,10 +211,10 @@ Looking at the Figures \ref{fig:pangenome3} and  \ref{fig:pangenome4} we can der
 \end{figure}
 
 \section{Phylogenetic analysis }
-The phylogenetic analysis enabled us to obtain phylogenetic trees both form the presence and absence of the accessory genes and the alignment of the core genes.
-The Figure \ref{fig:Tree1} represent the tree obtained using the accessory genome data, while the Figure \ref{fig:Tree2} represent the tree obtained using the core genome data.\\Each branch is associated to a confidence level from 0 to 1, obtained by the metadata. We also divided the branches based on the country and the diseases as shown in the legends.
-\\Operating a comparison between the two we can see that in both trees we have an enanched division based on the countries (westernized and non westernized), with a stronger clustering in the Tree \ref{fig:Tree1}, since the tree is obtained using the data from the accessory genomes it is easier to observe a "clustering-specific" based on the westernization countries, diet and culture differences.
-\\Regarding the disease information, we think the the Tree \ref{fig:Tree2} is more explenatory. We can specifically see that there is a branching point after which the non-healty samples are grouped almost all togheter. We hypotize that this difference could be related to DNA mutation that were acquired after the activation of pathogenic pathways.
+The phylogenetic analysis enabled us to obtain phylogenetic trees both from the presence and absence of the accessory genes and the alignment of the core genes.
+Figure \ref{fig:Tree1} represent the tree obtained using the accessory genome data, while Figure \ref{fig:Tree2} represent the tree obtained using the core genome data.\\Each branch is associated with a confidence level from 0 to 1, obtained by the metadata. We also divided the branches based on the country and the diseases as shown in the legends.
+\\Operating a comparison between the two we can see that in both trees we have an enhanched division based on the countries (westernized and non-westernized), with a stronger clustering in Tree \ref{fig:Tree1}, since the tree is obtained using the data from the accessory genomes is easier to observe a "clustering-specific" based on the westernization countries, diet and culture differences.
+\\Regarding the disease information, we think Tree \ref{fig:Tree2} is more explanatory. We can specifically see that there is a branching point after which the non-healthy samples are grouped almost altogether. We hypothesize that this difference could be related to DNA mutations that were acquired after the activation of pathogenic pathways.
 
 \begin{figure}[ht]
 \centering
@@ -235,7 +235,7 @@ The Figure \ref{fig:Tree1} represent the tree obtained using the accessory genom
 
 
 \section{Taxonomic association}
-PhyloPhlAn enable us to operate a phylogenetic analysis. The main output correspond to a list of the closest SGBs sorted by their increasing average sequence distance (Mash distance) in a tab-separated file \cite{PhyloGuide}. 
+PhyloPhlAn enables us to operate a phylogenetic analysis. The main output corresponds to a list of the closest SGBs sorted by their increasing average sequence distance (Mash distance) in a tab-separated file \cite{PhyloGuide}. 
 %The information of each SGB contains specific columns:
 %\\
 %\\ \code{my\_bin}: is the input bin name
@@ -244,22 +244,22 @@ PhyloPhlAn enable us to operate a phylogenetic analysis. The main output corresp
 %\\ \code{taxonomy}: the full taxonomic label assigned to the SGB
 %\\ \code{average\_mash\_distance}: the distance is calculated with respect to all the genomes in the SGB.
 %\\
-\\In our case, for each MAG we get the same taxa\_level, the species Flavonifractor plautii, a strictly anaerobic rod shaped bacterium. It is a commensal of the human intestinal microbiota which is  usually difficult to isolate from samples \cite{Plauti}.
-\\Thanks to further invastigation on this bacteria it was found that this strain was recently obtained via the unification of two previuosly distinct species, specifically, Clostridium orbiscindens and Eubacterium plautii \cite{Unification}.
-\\It is known from literature that this species is correleated with hip joint infection \cite{HipJoint}, chronic kidney disease, various autoimmune disorders and epithelial invasive potential \cite{PlautiiDiseases}. Finally, this strain was associated with blood infections in immunosuppressed patients \cite{PlautiiBlood},
-we think that this findings are to keep in consideration for further analysis on this strain, since the 33\% of our samples were obtained from patients with correlated diseases like rheumatoid arthritis (a kind hip joint infection) and hypertension.
+\\In our case, for each MAG we get the same taxa\_level, the species \textit{Flavonifractor plautii}, a strictly anaerobic rod-shaped bacterium. It is a commensal of the human intestinal microbiota which is  usually difficult to isolate from samples \cite{Plauti}.
+\\Thanks to further investigation on this bacteria it was found that this strain was recently obtained via the unification of two previously distinct species, specifically, Clostridium orbiscindens and Eubacterium plautii \cite{Unification}.
+\\It is known from the literature that this species is correlated with hip joint infection \cite{HipJoint}, chronic kidney disease, various autoimmune disorders, and epithelial invasive potential \cite{PlautiiDiseases}. Finally, this strain was associated with blood infections in immunosuppressed patients \cite{PlautiiBlood},
+we think that these findings are to keep in consideration for further analysis on this strain since 33\% of our samples were obtained from patients with correlated diseases like rheumatoid arthritis (a kind hip joint infection) and hypertension.
 
 
 
 \chapter{Conclusion}
-Thanks to this project it was possible to obtain an insight on the metagenome workflow and the main analysis that are neeed when dealing with unkown genomes.
+Thanks to this project it was possible to obtain an insight into the metagenome workflow and the main analysis that is needed when dealing with unknown genomes.
 We initially investigated the uSGB we were given computing general statistics on the quality and the associated metadata.
-We then performed a process of gene annotation and retrived informations about the number of coding sequences and hypotetical proteins in these CDS (Figure \ref{fig:CDS}).
-We than were able to perform a pangenome analysis and hypotize that the pangenome of our uSGB is closed as the addition of new genomes gives us little to no information as shown in the Figure \ref{fig:pangenome4}. Also, it was possible to identify the genes shared by at least 90\% of our MAGs, the core genome. These correspons to $\sim$ 15\% of the total gene.
-After the tree obtained with a phylogenetic analysis (\ref{fig:Tree1}, \ref{fig:Tree2}) we hypotized that the obtained tree could be useful to investigate the custering based on the country of origin of the sample and the presence of absence of specific diseases.
-From the taxonomix assigment of the uSGB it was possible to identify the \textit{Oscillospiraceae} family and specifically the \textit{Flavonifractor plautii} species, correlated with variuos diseases and infections \cite{HipJoint,PlautiiDiseases, PlautiiBlood} that could correlate with the ones observed in our samples. More specific analysis should be effectuated to better analyze the clustering of the non-healty and healty samples and the role of westernization and diet, keeping in mind that there could be a bias derived from the fact that all the control samples were obtained from westernized patients while most of the diseased samples were obtained from not westernized patients.
+We then performed a process of gene annotation and retrieved information about the number of coding sequences and hypothetical proteins in these CDSs (Figure \ref{fig:CDS}).
+We then were able to perform a pangenome analysis and hypothesize that the pangenome of our uSGB is closed as the addition of new genomes gives us little to no information as shown in Figure \ref{fig:pangenome4}. Also, it was possible to identify the genes shared by at least 90\% of our MAGs, the core genome. These correspond to $\sim$ 15\% of the total gene.
+After the tree was obtained with a phylogenetic analysis (\ref{fig:Tree1}, \ref{fig:Tree2}) we hypothesize that the obtained tree could be useful to investigate the clustering based on the country of origin of the sample and the presence or absence of specific diseases.
+From the taxonomic assignment of the uSGB, it was possible to identify the \textit{Oscillospiraceae} family and specifically the \textit{Flavonifractor plautii} species, correlated with various diseases and infections \cite{HipJoint,PlautiiDiseases, PlautiiBlood} that could correlate with the ones observed in our samples. More specific analysis should be effectuated to better analyze the clustering of the non-healthy and healthy samples and the role of westernization and diet, keeping in mind that there could be a bias derived from the fact that all the control samples were obtained from westernized patients while most of the diseased samples were obtained from not westernized patients.
 \vfill
-Link to the github page with the project: \textit{https://github.com/iamandreatonina/Microbiomal\_Genomics\_Segata}
+Link to the GitHub page with the project: \textit{https://github.com/iamandreatonina/Microbiomal\_Genomics\_Segata}
 
 
 
