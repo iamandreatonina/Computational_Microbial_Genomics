@@ -8,7 +8,7 @@ uSGB : SGB15132
 
 Project developed by: 
   * Andrea Tonina  [@iamandreatonina](https://github.com/iamandreatonina)
-  * Gloria Lugoboni [@GLoriaLugoboni](https://github.com/GloriaLugoboni)
+  * Gloria Lugoboni [@GloriaLugoboni](https://github.com/GloriaLugoboni)
   * Lorenzo Santarelli [@Lor-Santa](https://github.com/Lor-Santa)
 
 LINKS:
