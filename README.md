@@ -1,4 +1,4 @@
-# Microbiomal_Genomics_Segata_project :computer:
+# Microbiomal_Genomics_Segata_project 
 
 Project for the course of Laboratory of Computational Microbial Genomics held by Nicola Segata, Mireia Valles Colomer and Francesco Asnicar (A.Y. 2022-2023).
 
