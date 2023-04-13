@@ -7,9 +7,9 @@ Topic: Analysis of an uSGB
 uSGB : SGB15132
 
 Project developed by: 
-  * Andrea Tonina  @iamandreatonina
-  * Gloria Lugoboni @GLoriaLugoboni
-  * Lorenzo Santarelli @Lor-Santa
+  * Andrea Tonina  [@iamandreatonina](https://github.com/iamandreatonina)
+  * Gloria Lugoboni [@GLoriaLugoboni](https://github.com/GloriaLugoboni)
+  * Lorenzo Santarelli [@Lor-Santa](https://github.com/Lor-Santa)
 
 LINKS:
 * [iTol x phylogenetic trees](https://itol.embl.de/)
