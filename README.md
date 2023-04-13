@@ -1,4 +1,4 @@
-# Microbiomal_Genomics_Segata_project 
+# Microbiomal_Genomics_Segata_project :computer:
 
 Project for the course of Laboratory of Computational Microbial Genomics held by Nicola Segata, Mireia Valles Colomer and Francesco Asnicar (A.Y. 2022-2023).
 
@@ -39,6 +39,7 @@ LINKS:
 - [X] Taxonomic assignments (PhyloPhlan 3.0)
 - [X] Phylogenetic alignments 
 - [X] Assosciation with host data 
+
 
 
 
