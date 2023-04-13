@@ -1,6 +1,6 @@
 # Microbiomal_Genomics_Segata_project 
 
-Project for the course of Laboratory of Biological Data Mining held by Nicola Segata, Mireia Valles Colomer and Francesco Asnicar (A.Y. 2022-2023).
+Project for the course of Laboratory of Computational Microbial Genomics held by Nicola Segata, Mireia Valles Colomer and Francesco Asnicar (A.Y. 2022-2023).
 
 Topic: Analysis of an uSGB
 
