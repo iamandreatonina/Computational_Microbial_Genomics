@@ -1,9 +1,17 @@
 # Microbiomal_Genomics_Segata_project 
+
+Project for the course of Laboratory of Biological Data Mining held by Nicola Segata, Mireia Valles Colomer and Francesco Asnicar (A.Y. 2022-2023).
+
+Topic: Analysis of an uSGB
+
 uSGB : SGB15132
 
+Project developed by: 
+  * Andrea Tonina  @iamandreatonina
+  * Gloria Lugoboni @GLoriaLugoboni
+  * Lorenzo Santarelli @Lor-Santa
+
 LINKS:
-* [Link for markdown syntax](https://docs.moodle.org/401/en/Markdown) 
-* [Other useful link for syntax](https://github.blog/2014-04-28-task-lists-in-all-markdown-documents/)
 * [iTol x phylogenetic trees](https://itol.embl.de/)
 * [Roary](https://sanger-pathogens.github.io/Roary/)
 * [Phylo - Working with Phylogenetic Trees](https://biopython.org/wiki/Phylo)
