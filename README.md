@@ -10,12 +10,14 @@ uSGB: SGB15132
 
 [Set presentation slides](https://github.com/iamandreatonina/Microbiomal_Genomics_Segata/tree/main/Presentation)
 
+## Authors
+
 Project developed by: 
   * Andrea Tonina  [@iamandreatonina](https://github.com/iamandreatonina)
   * Gloria Lugoboni [@GloriaLugoboni](https://github.com/GloriaLugoboni)
   * Lorenzo Santarelli [@Lor-Santa](https://github.com/Lor-Santa)
 
----
+## Tools 
 
 LINKS:
 * [iTol x phylogenetic trees](https://itol.embl.de/)
@@ -24,8 +26,6 @@ LINKS:
 * [PhyloPhLan](https://github.com/biobakery/phylophlan/wiki)
 * [Prokka](https://github.com/tseemann/prokka)
 
----
-
 ## Review 
 - [X] Introduction
 - [X] Methods
@@ -33,7 +33,6 @@ LINKS:
 - [X] Conclusions
 - [X] References 
 
----
 ## Lectures code update
 - [X] Genome annotation (prokka)
 - [X] Pangeonme analysis (roary)
@@ -41,7 +40,6 @@ LINKS:
 - [X] Phylogenetic alignments 
 - [X] Assosciation with host data
 
-## Tools
 
 
 
