@@ -8,6 +8,8 @@ uSGB: SGB15132
 
 [Report](https://github.com/iamandreatonina/Microbiomal_Genomics_Segata/tree/main/Report/Microbes_Genomics_Report.pdf)
 
+[Set presentation slides](https://github.com/iamandreatonina/Microbiomal_Genomics_Segata/tree/main/Presentation)
+
 Project developed by: 
   * Andrea Tonina  [@iamandreatonina](https://github.com/iamandreatonina)
   * Gloria Lugoboni [@GloriaLugoboni](https://github.com/GloriaLugoboni)
@@ -30,11 +32,6 @@ LINKS:
 - [X] Results and Discussion 
 - [X] Conclusions
 - [X] References 
-
----
-
-## Presentation 
-- [X] [Set presentation slides](https://github.com/iamandreatonina/Microbiomal_Genomics_Segata/tree/main/Presentation)
 
 ---
 ## Lectures code update
