@@ -6,7 +6,7 @@ Topic: Analysis of an uSGB
 
 uSGB: SGB15132
 
-[Report](https://github.com/iamandreatonina/Microbiomal_Genomics_Segata/tree/main/)
+[Report](https://github.com/iamandreatonina/Microbiomal_Genomics_Segata/tree/main/Report/Microbes_Genomics_Report.pdf)
 
 Project developed by: 
   * Andrea Tonina  [@iamandreatonina](https://github.com/iamandreatonina)
