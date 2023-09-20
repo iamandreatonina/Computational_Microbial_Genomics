@@ -1,10 +1,10 @@
-# Computational Microbiomal Genomics project 
+# Computational Microbial Genomics project 
 
-Project for the course of Laboratory of Computational Microbial Genomics held by professor Nicola Segata, Mireia Valles Colomer and Francesco Asnicar (A.Y. 2022-2023).
+Project for the course of Laboratory of Computational Microbial Genomics held by professor Nicola Segata, Mireia Valles Colomer, and Francesco Asnicar (A.Y. 2022-2023).
 
 Topic: Analysis of an uSGB
 
-uSGB : SGB15132
+uSGB: SGB15132
 
 Project developed by: 
   * Andrea Tonina  [@iamandreatonina](https://github.com/iamandreatonina)
@@ -25,7 +25,7 @@ LINKS:
 - [X] Methods
 - [X] Results and Discussion 
 - [X] Conclusions
-- [X] Referencces 
+- [X] References 
 
 ---
 
@@ -38,7 +38,9 @@ LINKS:
 - [X] Pangeonme analysis (roary)
 - [X] Taxonomic assignments (PhyloPhlan 3.0)
 - [X] Phylogenetic alignments 
-- [X] Assosciation with host data 
+- [X] Assosciation with host data
+
+## Tools
 
 
 
