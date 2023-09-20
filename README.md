@@ -6,10 +6,14 @@ Topic: Analysis of an uSGB
 
 uSGB: SGB15132
 
+[Report](https://github.com/iamandreatonina/Microbiomal_Genomics_Segata/tree/main/)
+
 Project developed by: 
   * Andrea Tonina  [@iamandreatonina](https://github.com/iamandreatonina)
   * Gloria Lugoboni [@GloriaLugoboni](https://github.com/GloriaLugoboni)
   * Lorenzo Santarelli [@Lor-Santa](https://github.com/Lor-Santa)
+
+---
 
 LINKS:
 * [iTol x phylogenetic trees](https://itol.embl.de/)
