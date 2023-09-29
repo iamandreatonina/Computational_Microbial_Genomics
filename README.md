@@ -1,6 +1,6 @@
 # Computational Microbial Genomics project 
 
-Project for the course of Laboratory of Computational Microbial Genomics held by professor Nicola Segata, Mireia Valles Colomer, and Francesco Asnicar (A.Y. 2022-2023).
+Project for the course of Computational Microbial Genomics held by professor Nicola Segata, Mireia Valles Colomer, and Francesco Asnicar (A.Y. 2022-2023).
 
 Topic: Analysis of an uSGB
 
